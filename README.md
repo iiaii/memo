@@ -30,6 +30,21 @@
 
 List<@Valid Dto>, @Valid Dto 와 같은 형태도 가능 (파라미터 리턴 모두 가능)
 
-
-
 [Validation](https://jongmin92.github.io/2019/11/18/Spring/bean-validation-1/)
+
+
+### SSR
+
+- SPA 전환
+![spa](https://d2.naver.com/content/images/2020/06/step1.png)
+
+- SSR 전환
+![ssr](https://d2.naver.com/content/images/2020/06/step2.png)
+
+CSR은 페이지 로드후 동적으로 컨텐츠를 생성하기 때문에 페이지가 노출되는 과정이 길다. 
+
+SSR은 서버에서 사용자에게 보여줄 페이지를 모두 구성하여 사용자에게 페이지를 보여주는 방식으로 JSP/Servlet의 아키텍처 역시 이 방식을 사용했다.
+
+페이지를 구성하는 속도는 늦지만 컨텐츠 구성이 완료되는 시점은 빨라지고, SEO(search engine optimization) 또한 쉽게 구성할 수 있다. 
+
+[서버사이드랜더링](https://d2.naver.com/helloworld/7804182)
