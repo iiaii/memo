@@ -67,9 +67,9 @@ SSR은 SEO가 가능하며 첫 랜더링된 html을 클라이언트에 전달해
 
 인증을 위한 오픈 스탠다드 프로토콜로 외부의 사용자 정보나 서비스 기능에 접근할 수 있다.
 
-![OAuth2](http://innovationm.co/wp-content/uploads/2018/06/Oauth-architecture.png]
+![OAuth2](http://innovationm.co/wp-content/uploads/2018/06/Oauth-architecture.png)
 
-[ref](http://innovationm.co/spring-security-with-oauth2/)
+[ref](http://innovationm.co/spring-security-with-oauth2/) 
 
 ##### 용어
 
