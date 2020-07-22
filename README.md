@@ -61,3 +61,31 @@ SSR은 SEO가 가능하며 첫 랜더링된 html을 클라이언트에 전달해
 [서버사이드랜더링](https://d2.naver.com/helloworld/7804182)
 [CSR / SSR](https://velog.io/@rjs1197/SSR%EA%B3%BC-CSR%EC%9D%98-%EC%B0%A8%EC%9D%B4%EB%A5%BC-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90)
 [CSR / SSR 2](https://velog.io/@zansol/%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0-%EC%84%9C%EB%B2%84%EC%82%AC%EC%9D%B4%EB%93%9C%EB%A0%8C%EB%8D%94%EB%A7%81SSR-%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8%EC%82%AC%EC%9D%B4%EB%93%9C%EB%A0%8C%EB%8D%94%EB%A7%81CSR)
+
+
+### OAuth2
+
+인증을 위한 오픈 스탠다드 프로토콜로 외부의 사용자 정보나 서비스 기능에 접근할 수 있다.
+
+![OAuth2](http://innovationm.co/wp-content/uploads/2018/06/Oauth-architecture.png] 
+
+[ref](http://innovationm.co/spring-security-with-oauth2/)
+
+##### 용어
+
+- Resource Server : Google, Facebook 같은 사용자 정보를 가지고 있는 서비스
+- Authorization Server : Google, Facebook 같은 서비스의 인증 서버 (Resource Server와 같은 security domain)
+- Resource Owner : 사용자 (자원 소유자)
+- Client : 현재 서비스 혹은 개발하고자 하는 서비스
+
+
+##### 진행 순서
+
+1. Resource Server(Google ...)로 부터 Client (개발하고자하는 서비스)가 Client Id, Client Secret 발급 (developer console 에서 발급)
+2. Resource Owner(사용자)가 Client에서 권한이나 정보가 필요한 서비스에 접근
+3. Authorization Server(인증서버, 로그인 페이지)로 Redirect (redirect - 서버가 브라우저에게 다른 주소로 요청할것을 지시)
+4. Resource Owner가 인증을 마치면 Client가 Auth Code 수신
+5. Client가 Client Id, Client Secret, Auth Code를 가지고 Resource Server에 인증 토큰 요청
+6. Resource Server가 정보 확인 후 Client에게 인증 토큰 발급
+7. Client는 Resource Server로 부터 사용자 정보나 서비스 기능에 접근
+
