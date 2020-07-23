@@ -76,16 +76,43 @@ SSR은 SEO가 가능하며 첫 랜더링된 html을 클라이언트에 전달해
 - Resource Server : Google, Facebook 같은 사용자 정보를 가지고 있는 서비스
 - Authorization Server : Google, Facebook 같은 서비스의 인증 서버 (Resource Server와 같은 security domain)
 - Resource Owner : 사용자 (자원 소유자)
-- Client : 현재 서비스 혹은 개발하고자 하는 서비스
+- Client : 웹, 앱 (현재 서비스 혹은 개발하고자 하는 서비스)
 
 
 ##### 진행 순서
 
-1. Resource Server(Google ...)로 부터 Client (개발하고자하는 서비스)가 Client Id, Client Secret 발급 (developer console 에서 발급)
+1. Resource Server(Google ...)로 부터 Client (웹, 앱)가 Client Id, Client Secret 발급 (developer console 에서 발급)
 2. Resource Owner(사용자)가 Client에서 권한이나 정보가 필요한 서비스에 접근
 3. Authorization Server(인증서버, 로그인 페이지)로 Redirect (redirect - 서버가 브라우저에게 다른 주소로 요청할것을 지시)
 4. Resource Owner가 인증을 마치면 Client가 Auth Code 수신
 5. Client가 Client Id, Client Secret, Auth Code를 가지고 Resource Server에 인증 토큰 요청
 6. Resource Server가 정보 확인 후 Client에게 인증 토큰 발급
 7. Client는 Resource Server로 부터 사용자 정보나 서비스 기능에 접근
+
+
+### CSRF (Cross Site Request Forgery)
+
+웹사이트 취약점을 이용해서 이용자가 의도하지 않은 요청을 통한 공격을 말한다.
+Http의 Stateless 특성으로 쿠키 정보만 이용해서 여러 공격이 발생할 수 있다. (로그인 상태에서 ~/logout을 호출하면 의도하지 않더라도 로그아웃이 됨)
+form data를 사용하여 공격하려고 할 때 이를 방지하기 위해서 csrf 토큰을 사용하여 방지한다.
+
+![form token](https://media.vlpt.us/images/max9106/post/fea74261-de2a-40ea-a4da-c85beb78b669/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202020-04-26%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%202.03.29.png)
+
+Thymeleaf로 form을 만들면 hidden으로 csrf 토큰 값이 생성된다. 인증된 상태이더라도 안전하지 않은 정보를 받아들이지 않는다.
+
+csrf 토큰 정보를 헤더에 포함시켜 서버요청을 하면 이를 해결할 수 있다 (로그아웃과 같은 행위도 GET보다 POST를 사용)
+
+Spring Security Config 에서 configure 메서드에 다음 구문을 추가하면 쿠키가 함께 전송된다. 
+(기본적으로 GET은 CSRF 토큰 정보를 넘기지 않더라도 작동한다)
+
+`.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())`
+
+![CookieCsrfTokenRepository](https://github.com/cheese10yun/blog-sample/raw/master/assets/CSRF-Meber-filed.png)
+
+발급 받은 쿠키의 키 값은 `XSRF-TOKEN`으로 `X-XSRF-TOKEN` 와 차이가 있다. (DEFAULT_CSRF_COOKIE_NAME 이 XSRF-TOKEN)
+중간에 토큰 값을 변조하거나 넘기지 않으면 `Http Status Code403 Forbidden` 이 발생한다.
+
+
+[Spring Securtiy CSRF](https://cheese10yun.github.io/spring-csrf/#null)
+[csrf](https://velog.io/@max9106/Spring-Security-csrf)
 
