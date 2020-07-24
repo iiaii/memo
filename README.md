@@ -89,6 +89,11 @@ SSR은 SEO가 가능하며 첫 랜더링된 html을 클라이언트에 전달해
 6. Resource Server가 정보 확인 후 Client에게 인증 토큰 발급
 7. Client는 Resource Server로 부터 사용자 정보나 서비스 기능에 접근
 
+##### SPA + Spring OAuth2
+
+위 과정을 거치면 백엔드에 Resource Server(구글 ...)에서 현 Resource Owner(사용자)에 대한 액세스 토큰이 발급된다.
+발급한 토큰으로 사용자 정보를 가져와 유저 객체를(UserDetails, UserDetailsService) 생성해 `SecurityContextHolder.getContext().setAuthentication(authentication);` 과 같이 세션을 구우면 스프링 시큐리티에서 알아서 세션처리를 해준다. (토큰이 브라우저까지 가지 않아도 됨)
+
 
 ### CSRF (Cross Site Request Forgery)
 
