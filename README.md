@@ -107,6 +107,8 @@ SPA와 API로 분리되어 구동되는 경우 나와았는 Spring OAuth2 예제
 
 추가적으로 토큰이 쿠키로 저장되어 있기 때문에 로그아웃하지 않은 상태로 창을 다시 열면 Vue Created에서 쿠키로 유저 정보가 있는지 요청해 있으면 Store에 유저 정보를 채워 로그인된 상태를 유지한다.
 
+[OAuth2 와 JWT](https://www.sauru.so/blog/basic-of-oauth2-and-jwt/)
+[JWT 로그인 구현](https://webfirewood.tistory.com/m/115?category=694472)
 
 ### CSRF (Cross Site Request Forgery)
 
