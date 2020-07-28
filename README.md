@@ -136,3 +136,14 @@ Spring Security Config 에서 configure 메서드에 다음 구문을 추가하�
 [Spring Securtiy CSRF](https://cheese10yun.github.io/spring-csrf/#null)
 [csrf](https://velog.io/@max9106/Spring-Security-csrf)
 
+
+# custom video control
+
+브라우저 별로 지원하는 html video 기능 및 ui 등이 상이하다. 
+일관된 서비스 환경을 제공하고 더 편리한 영상 서비스를 제공하기 위해 커스터 마이징이 필요하다.
+
+##### 아이디어
+
+비디오 태그의 controls 를 해제하고 div, span, input 태그 등에 css와 js로 액션을 입한다.
+이벤트의 경우 키보드, 마우스 별로 세부적으로 구분되는 것을 활용하고 비디오 태그의 프로퍼티를 조작하여 구성한다.
+
