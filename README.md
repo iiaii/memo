@@ -137,7 +137,7 @@ Spring Security Config 에서 configure 메서드에 다음 구문을 추가하�
 [csrf](https://velog.io/@max9106/Spring-Security-csrf)
 
 
-# custom video control
+### custom video control
 
 브라우저 별로 지원하는 html video 기능 및 ui 등이 상이하다. 
 일관된 서비스 환경을 제공하고 더 편리한 영상 서비스를 제공하기 위해 커스터 마이징이 필요하다.
@@ -147,3 +147,10 @@ Spring Security Config 에서 configure 메서드에 다음 구문을 추가하�
 비디오 태그의 controls 를 해제하고 div, span, input 태그 등에 css와 js로 액션을 입한다.
 이벤트의 경우 키보드, 마우스 별로 세부적으로 구분되는 것을 활용하고 비디오 태그의 프로퍼티를 조작하여 구성한다.
 
+
+### @ElementCollection
+
+해당 어노테이션이 붙으면 Jpa 구현체는 모든 컬렉션의 데이터를 모두 삭제하고 다시 모든 데이터를 추가한다. PK가 존재하지 않아 발생하는 현상이지만, @OrderColumn 을 사용하면 순서값을 같이 저장해서 조회할때 사용하기 때문에 모두 삭제하는 문제를 방지할 수 있다고 한다. (확실한지 확인 필요)
+
+
+@ElementCollection 을 사용하면 DB에서는 별도의 테이블이 구성된다. (논리적으로는 한 엔티티 안이지만 DB에서는 별개의 테이블이 생성되어 관리된다. 코드상(논리적으로) 분리되어 있지만 한 테이블에 관리되는 Embedded 타입과 상반된 경우이다) 별도의 테이블에 의해 관리되는 것으로 인한 성능 문제가 신경쓰인다면 실제 테스트를 해봐야겠지만 `String.join()` 를 이용해서 `,` 같은 구분자로 구분하는 전용 컨버터 클래스를 만들어서 String 형태로 저장 가능하다. (이 방식 역시 변환에서 발생하는 오버헤드를 고려해야 한다)
