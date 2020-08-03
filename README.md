@@ -195,13 +195,41 @@ $mount 의 경우 필요할때 Vue 인스턴스를 명시 적으로 마운트 �
 예를 들어 지속적으로 데이터를 쌓거나 분석하는 경우에 사용하기도 하고 일정 시간이 지나면 만료 시키는 등에 활용 가능하다.
 
 ```
-기본예제 추가
+@Scheduled(fixedRateString = "60000")   // 1분 마다 실행
+public void scheduledTask() {
+}
 ```
 
 동적으로 스케줄링을 하고 제거하는 코드도 가능하다.
 
 ```
-동적 예시
+private Map<String, ScheduledFuture<?>> scheduledTasks = new ConcurrentHashMap<>();
+
+/**
+ * 스케줄 등록 
+ * @param token 
+ * @param expiresIn
+ */
+ public void register(String token, Long expiresIn) {
+    tokenExpireCountMap.put(token, 0);     
+    ScheduledFuture<?> tokenExpireTask = taskScheduler.scheduleWithFixedDelay(
+            () -> {               
+            if (tokenExpireCountMap.get(token) == 1) {
+                        userService.logout(token);                 
+                        this.remove("loginUser"+token);
+            }                
+            tokenExpireCountMap.put(token, tokenExpireCountMap.get(token)+1);
+        }, expiresIn * 1000);   
+        scheduledTasks.put("loginUser"+token, tokenExpireTask);
+    }
+    
+/** 
+  * 스케줄 삭제 
+  * @param id 
+  */
+  public void remove(String id) {    
+      scheduledTasks.get(id).cancel(true);
+  }
 ```
 
 
