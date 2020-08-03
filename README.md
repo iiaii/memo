@@ -232,4 +232,5 @@ private Map<String, ScheduledFuture<?>> scheduledTasks = new ConcurrentHashMap<>
   }
 ```
 
+[Spring Schedule](https://jeong-pro.tistory.com/186)
 
