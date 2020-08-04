@@ -276,4 +276,3 @@ UserInfo userInfo = local.get();
 local.remove(currentUser);
 ```
 
-Authentication Manager(인증 관리, 로그인 관리)와 Access Decision Manager(인가 관리, 접근 권한 관리) 역할을 하며
