@@ -321,7 +321,42 @@ Spring Template Engine : JSP, Thymeleaf, Freemarker, Mustache ...
 
 ### 정규표현식
 
-[RegExr](https://regexr.com/)
-[REGEXPER](https://regexper.com/)
-[정규표현식 패턴](https://yurimkoo.github.io/analytics/2019/10/26/regular_expression.html)
-[정규표현식 좀 더 깊이 알아보기](https://medium.com/@originerd/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-%EC%A2%80-%EB%8D%94-%EA%B9%8A%EC%9D%B4-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0-5bd16027e1e0)
+- [RegExr](https://regexr.com/)
+- [REGEXPER](https://regexper.com/)
+- [정규표현식 패턴](https://yurimkoo.github.io/analytics/2019/10/26/regular_expression.html)
+- [정규표현식 좀 더 깊이 알아보기](https://medium.com/@originerd/%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-%EC%A2%80-%EB%8D%94-%EA%B9%8A%EC%9D%B4-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0-5bd16027e1e0)
+
+
+### Spring Cache
+
+스프링 캐시는 추상화 인터페이스를 제공하고 실제로 캐싱 데이터를 저장하는 Provider를 설정할 수 있다. 
+
+- Generic
+- JCache
+- EhCache
+- Hazelcast
+- Redis
+- ...
+
+##### Annotations
+
+- @Cacheable 이 선언된 메서드는 결과를 캐시에 저장하고 다음 호출에서는 메서드의 내부 로직을 수행하지 않고 캐싱된 결과를 바로 리턴한다. 
+- @CacheEvict 는 캐싱된 데이터를 제거할 때 사용한다.
+- @CachePut은 캐싱 데이터를 업데이트한다.
+- @ChacheConfig 클래스 레벨에서 캐싱 설정을 공유한다. 캐시 작업에 사용할 캐시 이름을 단일 클래스로 정의할 수 있다.
+
+##### Ref
+
+- [EHCache vs Hazelcast](https://roynus.tistory.com/913)
+- [Hazelcast](https://brunch.co.kr/@springboot/56)
+- [EHCache](https://javacan.tistory.com/entry/133)
+- [Cassandra](https://nicewoong.github.io/development/2018/02/11/cassandra-feature/)
+
+##### 참고
+
+- Cassandra : Key-space > Table > Row > Column name : Column value
+- Mongodb : db > collection > document > key : value
+- RDBMS : DB > Table > row > column
+- ElasticSearcvh : index > type > document > key : value
+
+
