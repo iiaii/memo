@@ -6,6 +6,8 @@
 
 [ref](http://innovationm.co/spring-security-with-oauth2/) 
 
+
+---
 ### 용어
 
 - Resource Server : Google, Facebook 같은 사용자 정보를 가지고 있는 서비스
@@ -14,6 +16,7 @@
 - Client : 웹, 앱 (현재 서비스 혹은 개발하고자 하는 서비스)
 
 
+---
 ### 진행 순서
 
 1. Resource Server(Google ...)로 부터 Client (웹, 앱)가 Client Id, Client Secret 발급 (developer console 에서 발급)
@@ -24,6 +27,8 @@
 6. Resource Server가 정보 확인 후 Client에게 인증 토큰 발급
 7. Client는 Resource Server로 부터 사용자 정보나 서비스 기능에 접근
 
+
+---
 ### 실제 구현한 SPA(Vue) + Spring OAuth2 API
 
 
@@ -31,7 +36,11 @@ SPA와 API로 분리되어 구동되는 경우 나와았는 Spring OAuth2 예제
 
 ![my-oauth2-implementation](https://github.com/iiaii/memo/blob/master/images/oauth2-implementation.PNG?raw=true)
 
-실제 구현했던 순서는 (완전히 틀린 방법일 수 있음)
+위 그림의 경우 동적 스케줄링을 사용해서 expireIn (1시간) 후에 로그아웃 처리 시키는 로직을 추가했다.
+실제 서비스 상황이라면 API 요청을 줄이고 서버의 리소스를 써서 요청에 보다 빠른 응답을 줄것인지 혹은 API 요청을 해서 빠른 응답보다 서버의 리소스와 보안상 이슈에서 한결 자유로워질 것인지 잘 고민해봐야 할것 같다.
+
+
+- 실제 구현했던 순서 (완전히 틀린 방법일 수 있음)
 
 1. (vue-google-oauth2)[https://www.npmjs.com/package/vue-google-oauth2] 모듈을 사용해서 팝업으로 구글 로그인 폼으로 Auth Code 까지 Vue에서 받는다. 
 2. Auth Code는 유효기간이 짧기 때문에 백으로 바로 Auth Code를 전송한다. (Auth Code가 공개되는 것도 보안상 좋을것이 없지만, 유효기간이 짧고 절대 공개되면 안되는 Client Secret이 백에만 존재함)
@@ -45,5 +54,8 @@ SPA와 API로 분리되어 구동되는 경우 나와았는 Spring OAuth2 예제
 
 추가적으로 토큰이 쿠키로 저장되어 있기 때문에 로그아웃하지 않은 상태로 창을 다시 열면 Vue Created에서 쿠키로 유저 정보가 있는지 요청해 있으면 Store에 유저 정보를 채워 로그인된 상태를 유지한다.
 
+
+
+---
 [OAuth2 와 JWT](https://www.sauru.so/blog/basic-of-oauth2-and-jwt/)
 [JWT 로그인 구현](https://webfirewood.tistory.com/m/115?category=694472)
