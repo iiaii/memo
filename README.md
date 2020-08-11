@@ -49,6 +49,7 @@
 
 ##### memo
 
+- [Vue의 단방향 / 양방향 데이터 바인딩](https://github.com/iiaii/memo/blob/master/vue/data-binding.md)
 - [$mount vs el 차이점](https://github.com/iiaii/memo/blob/master/vue/mount-el.md)
 
 ##### repo
