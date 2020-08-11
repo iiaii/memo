@@ -11,6 +11,7 @@
 - [MVC](https://github.com/iiaii/memo/blob/master/patterns/mvc-mvp-mvvm.md)
 - [MVP](https://github.com/iiaii/memo/blob/master/patterns/mvp.md)
 - [MVVM](https://github.com/iiaii/memo/blob/master/patterns/mvvm.md)
+- [Flux](https://github.com/iiaii/memo/blob/master/patterns/flux.md)
 
 ##### repo
 
