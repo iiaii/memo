@@ -1,9 +1,7 @@
 # Memo
 
 
-## 스터디 (+ Repo)
 
----
 ### Patterns
 
 ##### memo
