@@ -102,7 +102,7 @@
 ---
 ## 개발 블로그 북마크
 
-- [웹 사이트 최적화 기법(http://book.naver.com/bookdb/book_detail.nhn?bid=4587095)
+- [웹 사이트 최적화 기법](http://book.naver.com/bookdb/book_detail.nhn?bid=4587095)
 - [대규모 서비스를 지탱하는 기술](http://book.naver.com/bookdb/book_detail.nhn?bid=6468636)
 - [서버/인프라를 지탱하는 기술](http://book.naver.com/bookdb/book_detail.nhn?bid=6010115)
 - [기억보단기록을](https://jojoldu.tistory.com/284?category=689637)
