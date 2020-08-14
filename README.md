@@ -1,6 +1,6 @@
 # Memo
 
-
+ 
 
 ### Patterns
 
@@ -15,23 +15,22 @@
 
 - [GoF Design Patterns](https://github.com/iiaii/gof-design-patterns)
 - [Java Design Patterns](https://github.com/iiaii/gof-design-patterns/tree/master/java-design-patterns/src)
-
-
-
+ 
+ 
 ---
 ### Javascript / Typescript
 
 ##### memo
 
-- [모든 자바스크립트 개발자가 알아야 하는 33가지 개념](https://github.com/yjs03057/33-js-concepts) (다른 분 Repo)
-- [자바스크립트 개발자를 위한 타입스크립트](https://github.com/heejongahn/ts-for-jsdev) (다른 분 Repo)
+- [모든 자바스크립트 개발자가 알아야 하는 33가지 개념](https://github.com/yjs03057/33-js-concepts) (yjs03057's Repo)
+- [자바스크립트 개발자를 위한 타입스크립트](https://github.com/heejongahn/ts-for-jsdev) (heejongahn's Repo)
+- [Path](https://github.com/iiaii/memo/blob/master/javascript/path.md)
 
 ##### repo
 
 - [Sonarqube 버그 -> Trello Card](https://github.com/iiaii/BugFinder)
-
-
-
+ 
+ 
 ---
 ### Java
 
@@ -39,9 +38,8 @@
 
 - [CompletableFuture](https://github.com/iiaii/java-completablefuture)
 - [Effective Java](https://github.com/iiaii/EffectiveJava_Study)
-
-
-
+ 
+ 
 ---
 ### Vue
 
@@ -55,9 +53,8 @@
 - [Vue Todo App](https://github.com/iiaii/vue-todo-app)
 - [Vuex Intro](https://github.com/iiaii/vuex-intro)
 - [Vue Mastery](https://github.com/iiaii/vue-mastery-study)
-
-
-
+ 
+ 
 ---
 ### Spring
 
@@ -80,14 +77,14 @@
 - [Spring Study](https://github.com/iiaii/Spring_Study)
 - [Spring JPA](https://github.com/iiaii/spring-jpa-project)
 - [JPA Study](https://github.com/iiaii/JPA_Study)
-
-
-
+ 
+ 
 ---
 ### 개발 상식
 
 ##### memo
 
+- [Webpack](https://github.com/iiaii/webpack-intro)
 - [CSR / SSR](https://github.com/iiaii/memo/blob/master/common/csr-ssr.md)
 - [OAuth2](https://github.com/iiaii/memo/blob/master/common/oauth2.md)
 - [Template Engine](https://github.com/iiaii/memo/blob/master/common/template-engine.md)
@@ -96,9 +93,8 @@
 ##### repo
 
 - [Custom Video Controls](https://github.com/iiaii/custom-video-controls)
-
-
-
+ 
+ 
 ---
 ## 개발 블로그 북마크
 
@@ -110,4 +106,5 @@
 - [Render Function](https://vuejs.org/v2/guide/render-function.html)
 - [State Management](https://vuejs.org/v2/guide/state-management.html), [Vuex 튜토리얼](https://joshua1988.github.io/web-development/vuejs/vuex-start/)
 - [Server Side Rendering](https://vuejs.org/v2/guide/ssr.html)
-
+ 
+ 
