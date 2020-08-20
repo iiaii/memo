@@ -37,6 +37,7 @@
 ##### memo
 
 - [Reflection](https://github.com/iiaii/memo/blob/master/java/reflection.md)
+- [Dynamic Proxy](https://github.com/iiaii/memo/blob/master/java/dynamic-proxy.md)
 
 ##### repo
 
