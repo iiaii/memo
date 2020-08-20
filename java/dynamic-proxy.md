@@ -21,8 +21,18 @@ bookRepository.findall();
  
  
 프록시 패턴으로 구현할 때 여러 중복되는 기능을 감싸고자 프록시가 겹겹이 쌓이는 일이 발생할 수 있다. (클라이언트 - 프록시 - 프록시 - 프록시 ... - 리얼서브젝트) 
-매번 프록시를 구현하기 보다 동적으로 런타임에서 생성해서 적용하는 것을 다이나믹 프록시라고 한다
+매번 프록시를 구현하기 보다 동적으로 런타임에 생성해서 인터페이스, 클래스의 프록시 인스턴스나 클래스를 만들어 사용하는 것을 다이나믹 프록시라고 한다.
+ 
+ 
+---
+### 다이나믹 프록시 활용
 
+- 스프링 데이터 JPA
+- 스프링 AOP
+- Mockito
+- 하이버네이트 Lazy initialization (Lazy 로딩)
+ 
+  
 ---
 ### 프록시 패턴
 
@@ -56,4 +66,33 @@ public class Proxy implements RealSubject {
 [gof-design-patterns](https://github.com/iiaii/gof-design-patterns)
 
 
+---
+### 자바의 다이나믹 프록시와 Spring AOP
 
+```java
+// 자바의 다이나믹 프록시
+BookService bookService = (BookService) Proxy.newProxyInstance(BookService.class.getClassLoader(), new Class[]{BookService.class},
+   new InvocationHandler() {
+      BookService bookService = new DefaultBookService();
+      @Override
+      public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+         if (method.getName().equals("rent")) { 
+            System.out.println("aaaa");
+            Object invoke = method.invoke(bookService, args); 
+            System.out.println("bbbb");
+            return invoke;
+         }
+         return method.invoke(bookService, args); 
+      }
+   }
+);
+```
+
+자바에서 제공하는 다이나믹 프록시는 클래스 기반의 프록시를 만들지 못하고, InvocationHandler()에 구현된 것 처럼 if문으로 구현하게 되면 추후에 비대해지게 된다. 확장하기 힘든 수많은 if문을 해결하는 방법은 상속, 인터페이스를 사용하는 것인데, Spring AOP는 상속, 인터페이스를 활용하는 구조로 만들어져 자바의 다이나믹 프록시보다 구조적으로 우수하다. 
+ 
+  
+Spring AOP는 클래스에 AOP를 적용하는 경우 상속을 통해 적용한다. (상속이 불가한 경우에는 불가능 (final, private 생성자)) 클래스보다는 인터페이스를 통해 프록시를 만드는 것이 더 바람직하다. (클래스를 만들어야만 하는 경우라면 추후에 더 복잡해질 수 있음)
+ 
+ 
+---
+인프런 | 더 자바, 코드를 조작하는 다양한 방법 (백기선)
