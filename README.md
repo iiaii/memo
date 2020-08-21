@@ -38,6 +38,7 @@
 
 - [Reflection](https://github.com/iiaii/memo/blob/master/java/reflection.md)
 - [Dynamic Proxy](https://github.com/iiaii/memo/blob/master/java/dynamic-proxy.md)
+- [Annotation Processor(Lombok)](https://github.com/iiaii/memo/blob/master/java/annotation-processor.md)
 
 ##### repo
 
