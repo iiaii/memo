@@ -90,7 +90,6 @@
 
 ##### memo
 
-- [Webpack](https://github.com/iiaii/webpack-intro)
 - [디버깅](https://github.com/iiaii/memo/blob/master/common/debug.md)
 - [CSR / SSR](https://github.com/iiaii/memo/blob/master/common/csr-ssr.md)
 - [OAuth2](https://github.com/iiaii/memo/blob/master/common/oauth2.md)
@@ -99,6 +98,7 @@
 
 ##### repo
 
+- [Webpack](https://github.com/iiaii/webpack-intro)
 - [Custom Video Controls](https://github.com/iiaii/custom-video-controls)
  
  
