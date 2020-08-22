@@ -2,9 +2,9 @@
 
 ### 단방향 데이터 바인딩
 
-Vue는 기본적으로 Vue Instance (= <script> = javascript) >> DOM (= \<template> = html) 으로 향하는 단방향 바인딩이다. 
+Vue는 기본적으로 Vue Instance에서 DOM 으로 향하는 단방향 바인딩이다. 
 따라서 `<template>`, `<script>`, `<style>` 형태를 가지는 Vue 싱글 파일 컴포넌트에서 `<script>`의 데이터가 변경되면 `<template>`에 바인딩된 데이터가 같이 변경된다.
-단방향 바인딩되어 있기 때문에 반대로 `<template>`에서 데이터가 변경되더라도 `<script>`의 데이터는 변경되지 않는다. 데이터 변경을 위해서는 `<script>`를 통해야만 한다.
+단방향 바인딩되어 있기 때문에 반대로 `<template>`으로 구현된 DOM에서 데이터가 변경되더라도 `<script>`의 데이터, Vue Instance는 변경되지 않는다. 데이터 변경을 위해서는 `<script>`를 통해야만 한다.
 
 
 ```vue
