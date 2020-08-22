@@ -1,6 +1,6 @@
-# Same Origin Policy & CORS (Cross-Origin Resource Sharing)
+# Same-Origin Policy & CORS (Cross-Origin Resource Sharing)
 
-웹은 기본적으로 Same Origin Policy, 동일한 출처 상의 요청만 가능하도록 한다. 
+웹은 기본적으로 Same-Origin Policy, 동일한 출처 상의 요청만 가능하도록 한다. 
 어떤 출처에서 불러온 문서나 스크립트가 다른 출처에서 가져온 리소스와 상호작용하는 것을 제한하기 위한 보안 방식으로 잠재적으로 해로울 수 있는 자원을 분리해 공격받을 수 있는 경로를 줄인다.
 정리하자면, 웹 브라우저 보안을 위해 프로토콜, 호스트, 포트가 동일한 서버로만 ajax 요청을 주고 받도록 한 정책이다. 
 (https://google.com - 프로토콜: https, 호스트: google.com, 포트: 443(https))
@@ -8,13 +8,13 @@
  
  
   
-- same origin
+- Same-Origin
 
 ```
 http://www.same-domain.com/ --> http://www.same-domain.com
 ```
 
-- cross origin
+- Cross-Origin
 
 ```
 http://www.same-domain.com -/-> http://www.cross-domain.com
@@ -31,7 +31,7 @@ http://www.same-domain.com -/-> http://www.cross-domain.com
 ### CORS (Cross-Origin Resource Sharing)
 
 HTTP 헤더를 사용해 브라우저가 한 출처에서 실행중인 웹 애플리케이션에 선택된 액세스 권한을 부여하도록 한다. 
-다른 출처의 자원을 요청할때 Cross-Origin HTTP요청을 실행하기 때문에 출처가 다른 도메인의 요청도 서버에서 접근권한을 허용하기 때문에 Same Origin Policy를 우회한다.
+다른 출처의 자원을 요청할때 Cross-Origin HTTP요청을 실행하기 때문에 출처가 다른 도메인의 요청도 서버에서 접근권한을 허용하기 때문에 Same-Origin Policy를 우회한다.
   
  
 CORS가 가능하게 하기 위해서는 2가지 방법이 있다
@@ -55,7 +55,7 @@ Access-Control-Allow-Origin 응답 헤더는 응답이 주어진 origin으로부
 - [JSONP](https://github.com/iiaii/memo/blob/master/common/jsonp.md)로 해결
 
 ---
-- [same origin, cors](https://velog.io/@yejinh/CORS-4tk536f0db)
+- [same-origin, cors](https://velog.io/@yejinh/CORS-4tk536f0db)
 
 
 
