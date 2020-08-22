@@ -90,6 +90,7 @@
 
 ##### memo
 
+- [Same Origin Policy & CORS](https://github.com/iiaii/memo/blob/master/common/same-origin-policy%26cors.md)
 - [디버깅](https://github.com/iiaii/memo/blob/master/common/debug.md)
 - [CSR / SSR](https://github.com/iiaii/memo/blob/master/common/csr-ssr.md)
 - [OAuth2](https://github.com/iiaii/memo/blob/master/common/oauth2.md)
