@@ -9,4 +9,18 @@
 3. 메서드의 파라미터 앞이나, 리턴 값 앞에 @Valid 나 @NotBlank, @NotNull 등을 추가하면 해당 구문을 지날때 검증한다. (파라미터 뿐만 아니라 리턴 값 앞에도 @Valid를 붙일 수 있다.)
 List<@Valid Dto>, @Valid Dto 와 같은 형태도 가능 (파라미터 리턴 모두 가능)
 
+```java
+// 파라미터
+public void example1(@Valid Param1 p1, @Valid Param2 p2) {
+    ...
+}
+
+// 리턴에도 가능
+public @Valid ReturnType example2() {
+    ...
+}
+```
+
+
+
 [Validation](https://jongmin92.github.io/2019/11/18/Spring/bean-validation-1/)
