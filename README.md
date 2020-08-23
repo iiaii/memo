@@ -1,7 +1,7 @@
 # Memo
 
 - [Patterns](#patterns)
-- [Javascript / Typescript](javascript--typescript)
+- [Javascript / Typescript](#javascript--typescript)
 - [Java](#java)
 - [Vue](#vue)
 - [Spring](#spring)
