@@ -1,7 +1,17 @@
 # Memo
 
+- [Patterns](#patterns)
+- [Javascript / Typescript](javascript--typescript)
+- [Java]()
+- [Vue]()
+- [Spring]()
+- [개발 상식]()
+- [개발 블로그 북마크]()
+ 
  
 
+ 
+---
 ### Patterns
 
 ##### memo
@@ -90,11 +100,11 @@
 
 ##### memo
 
+- [OAuth2](https://github.com/iiaii/memo/blob/master/common/oauth2.md)
 - [Same-Origin Policy & CORS](https://github.com/iiaii/memo/blob/master/common/same-origin-policy%26cors.md)
 - [JSONP](https://github.com/iiaii/memo/blob/master/common/jsonp.md)
 - [디버깅](https://github.com/iiaii/memo/blob/master/common/debug.md)
 - [CSR / SSR](https://github.com/iiaii/memo/blob/master/common/csr-ssr.md)
-- [OAuth2](https://github.com/iiaii/memo/blob/master/common/oauth2.md)
 - [Template Engine](https://github.com/iiaii/memo/blob/master/common/template-engine.md)
 - [정규 표현식](https://github.com/iiaii/memo/blob/master/common/regexp.md)
 
