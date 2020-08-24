@@ -9,7 +9,7 @@
 path.join('/foo', 'bar', 'baz/asdf');
 ```
 
-return : /foo/bar/baz/asdf
+> return : /foo/bar/baz/asdf
   
  
  
@@ -29,7 +29,7 @@ return : /foo/bar/baz
 path.resolve('wwwroot', 'static_files/png/', '../gif/image.gif');
 ```
 
-return : /home/myself/node/wwwroot/static_files/gif/image.gif (현재 디렉토리 = /home/myself/node)
+> return : /home/myself/node/wwwroot/static_files/gif/image.gif (현재 디렉토리 = /home/myself/node)
  
  
 ---
