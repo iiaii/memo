@@ -21,7 +21,7 @@ path.join('/foo', 'bar', 'baz/asdf');
 path.resolve('/foo/bar', './baz');
 ```
 
-return : /foo/bar/baz
+> return : /foo/bar/baz
  
 - 만약 결과 값이 유효하지 않으면 현재 디렉토리가 사용된다 (absolute URL 반환)
 
