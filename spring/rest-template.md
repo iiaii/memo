@@ -51,7 +51,7 @@ HttpClient는 HTTP를 사용하여 통신하는 범용 라이브러리이고 Res
 5. RestTemplate 은 ResponseErrorHandler 로 오류를 확인하고 있다면 처리로직을 태운다.
 6. ResponseErrorHandler 는 오류가 있다면 ClientHttpResponse 에서 응답데이터를 가져와서 처리한다.
 7. RestTemplate 은 HttpMessageConverter 를 이용해서 응답메세지를 java object(Class responseType) 로 변환한다.
-어플리케이션에 반환된다.
+8. 어플리케이션에 반환한다.
 
 
 ---
