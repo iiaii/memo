@@ -77,6 +77,7 @@
 ##### memo
 
 - [Spring Validation](https://github.com/iiaii/memo/blob/master/spring/validation.md)
+- [Spring RestTemplate](https://github.com/iiaii/memo/blob/master/spring/rest-template.md)
 - [Spring CSRF (Cross Site Request Forgery)](https://github.com/iiaii/memo/blob/master/spring/csrf.md)
 - [@ElementCollection](https://github.com/iiaii/memo/blob/master/spring/element-collection.md)
 - [@Schedule](https://github.com/iiaii/memo/blob/master/spring/schedule.md)
