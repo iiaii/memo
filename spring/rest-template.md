@@ -44,13 +44,13 @@ HttpClient는 HTTP를 사용하여 통신하는 범용 라이브러리이고 Res
 ![rest template principle](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F99300D335A9400A52C16C1)
 
 
-1. 어플리케이션이 RestTemplate를 생성하고, URI, HTTP메소드 등의 헤더를 담아 요청한다.
-2. RestTemplate 는 HttpMessageConverter 를 사용하여 requestEntity 를 요청메세지로 변환한다.
-3. RestTemplate 는 ClientHttpRequestFactory 로 부터 ClientHttpRequest 를 가져와서 요청을 보낸다.
+1. 어플리케이션이 RestTemplate을 생성하고, URI, HTTP메소드 등의 헤더를 담아 요청한다.
+2. RestTemplate 은 HttpMessageConverter 를 사용하여 requestEntity 를 요청메세지로 변환한다.
+3. RestTemplate 은 ClientHttpRequestFactory 로 부터 ClientHttpRequest 를 가져와서 요청을 보낸다.
 4. ClientHttpRequest 는 요청메세지를 만들어 HTTP 프로토콜을 통해 서버와 통신한다.
-5. RestTemplate 는 ResponseErrorHandler 로 오류를 확인하고 있다면 처리로직을 태운다.
+5. RestTemplate 은 ResponseErrorHandler 로 오류를 확인하고 있다면 처리로직을 태운다.
 6. ResponseErrorHandler 는 오류가 있다면 ClientHttpResponse 에서 응답데이터를 가져와서 처리한다.
-7. RestTemplate 는 HttpMessageConverter 를 이용해서 응답메세지를 java object(Class responseType) 로 변환한다.
+7. RestTemplate 은 HttpMessageConverter 를 이용해서 응답메세지를 java object(Class responseType) 로 변환한다.
 어플리케이션에 반환된다.
 
 
