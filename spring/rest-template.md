@@ -1,15 +1,15 @@
-# Rest Template
+# RestTemplate
 
 
 스프링 프레임 워크에서 REST로 구성된 서비스의 Endpoint를 호출할 수 있도록 2가지 방법을 제공한다.
 
 - RestTemplate (동기 방식)
-- Rest Client (비동기 방식)
+- RestClient (비동기 방식)
 
-> Rest Template은 Spring 3 부터 지원 되었고 REST API 호출 이후 응답을 받을 때까지 기다리는 동기 방식이다. (WebClient로 nonblock, 리엑티브 웹 클라이언트로 동기, 비동기 방식을 지원)
+> RestTemplate은 Spring 3 부터 지원 되었고 REST API 호출 이후 응답을 받을 때까지 기다리는 동기 방식이다. (WebClient로 nonblock, 리엑티브 웹 클라이언트로 동기, 비동기 방식을 지원)
 
-Rest Template은 스프링에서 제공하는 다른 여러 Template 클래스(JdbcTemplate, RedisTemplate ...)와 동일한 원칙에 따라 설계되어 단순한 방식의 호출로 복잡한 작업을 쉽게 하도록 제공한다. 
-Rest Template은 REST 서비스를 호출하도록 설계되어 HTTP 프로토콜의 메서드(GET, POST ...)에 맞게 여러 메서드를 제공한다.
+RestTemplate은 스프링에서 제공하는 다른 여러 Template 클래스(JdbcTemplate, RedisTemplate ...)와 동일한 원칙에 따라 설계되어 단순한 방식의 호출로 복잡한 작업을 쉽게 하도록 제공한다. 
+RestTemplate은 REST 서비스를 호출하도록 설계되어 HTTP 프로토콜의 메서드(GET, POST ...)에 맞게 여러 메서드를 제공한다.
  
  
 정리하자면 Rest Template은
@@ -35,7 +35,7 @@ URLConnection와 달리 모든 응답코드를 읽을 수 있고, 타임아웃 �
  
  
 ---
-### Rest Template 동작원리
+### RestTemplate 동작원리
 
 RestTemplate은 `org.springframework.http.client` 패키지에 있다. 
 HttpClient는 HTTP를 사용하여 통신하는 범용 라이브러리이고 RestTemplate은 HttpClient를 추상화(HttpEntity의 json, xml 등)해서 제공해준다. 
