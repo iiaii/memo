@@ -38,6 +38,7 @@
 
 ##### repo
 
+- [Javascript 핵심 ](https://github.com/iiaii/javascript-core-concepts/blob/master/README.md)
 - [Sonarqube 버그 -> Trello Card](https://github.com/iiaii/BugFinder)
  
  
