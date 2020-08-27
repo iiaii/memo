@@ -34,6 +34,7 @@
 
 - [모든 자바스크립트 개발자가 알아야 하는 33가지 개념](https://github.com/yjs03057/33-js-concepts) (yjs03057's Repo)
 - [자바스크립트 개발자를 위한 타입스크립트](https://github.com/heejongahn/ts-for-jsdev) (heejongahn's Repo)
+- [setInterval / setTimeout](https://github.com/iiaii/memo/blob/master/javascript/setInterval-setTimeout.md)
 - [Path](https://github.com/iiaii/memo/blob/master/javascript/path.md)
 
 ##### repo
