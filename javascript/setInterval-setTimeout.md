@@ -65,14 +65,7 @@ setTimeout(function run(){
 ---
 ### setTimeout 0
 
-```javascript
-setTimeout(() => alert("world")); // = setTimeout(() => alert("world"), 0);
-alert("hello);
-
-// 실행 결과
-// hello
-// world
-```
+우선 javascript가 동작하는 싱글스레드와 이벤트 루프를 이해해야 한다.
 
 ```javascript
 // 이게 어떻게 실행될지 안다면 이벤트 루프에 대해 정확히 이해하는 것!
@@ -110,7 +103,7 @@ console.log('hi');
 ```
 
 ```javascript
-// delay 시간을 지키지 못하는 setTimeout
+// delay 시간을 지키지 못하는 setTimeout (싱글스레드이기 때문!)
 const start = Date.now();
 setTimeout(() => console.log(Date.now() - start), 100);
 for(let i=0 ; i<1e4 ; i++) {
@@ -131,6 +124,16 @@ for(let i=0 ; i<1e4 ; i++) {
 
 
 ![event loop](https://cdn.filestackcontent.com/28uVaQ7sRq6LRmU89ptG)
+
+```javascript
+// setTimeout 0
+setTimeout(() => alert("world")); // = setTimeout(() => alert("world"), 0);
+alert("hello);
+
+// 실행 결과
+// hello
+// world
+```
 
 따라서 setTimeout 0 을 사용하는 이유는 함수의 호출 실행 순서를 바꾸기 위함이다. 
 하지만 setTimeout은 호출 스택에 함수가 가득 차 있거나 중첩된 for문 등 무거운 실행이 있다면 정확히 해당 시간 이후에 실행되지 않을 수 있다. (실제로 많은 반복문이 있으면 설정한 delay 시간 보다 지연됨)
