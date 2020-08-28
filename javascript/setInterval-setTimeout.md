@@ -57,6 +57,9 @@ setTimeout(function run(){
 
 > 정밀하게 일정시간 단위로 함수를 호출할때는 재귀적 setTimeout을 사용해야 한다
 
+중요한 것은 setInterval, setTimeout 모두 지정한 delay 시간을 지키지 못할 수 있다. 
+싱글스레드인 자바스크립트 특성상 무거운 작업이 있다면 해당 작업이 종료되기를 기다린다. (이벤트 루프가 스택이 비워질때까지 기다리고 비워지면 실행)
+따라서 지정한 시간보다 훨씬 뒤에 실행될 수 있다.
 
 
 ---
@@ -71,10 +74,61 @@ alert("hello);
 // world
 ```
 
+```javascript
+// 이게 어떻게 실행될지 안다면 이벤트 루프에 대해 정확히 이해하는 것!
+function f1() {
+  console.log('f1 1');
+  setTimeout(() => {
+    console.log('f1 2');
+    setTimeout(() => console.log('f1 3'));
+  });
+  console.log('f1 4');
+}
+
+function f2() {
+  console.log('f2 1');
+  setTimeout(() => {
+    console.log('f2 2');
+  });
+  console.log('f2 3');
+}
+
+f1();
+f2();
+console.log('hi');
+
+
+// 실행 결과
+// f1 1
+// f1 4
+// f2 1
+// f2 3
+// hi
+// f1 2   // 1중 setTimeout
+// f2 2   // 1중 setTimeout
+// f1 3   // 2중 setTimeout
+```
+
+```javascript
+// delay 시간을 지키지 못하는 setTimeout
+const start = Date.now();
+setTimeout(() => console.log(Date.now() - start), 100);
+for(let i=0 ; i<1e4 ; i++) {
+  console.log('!');
+}
+
+// 실행결과 
+// ! 
+// ! 
+// ...  // ! * 10000 개
+// 955  // 그때그때 다른 값 하지만 절대 100ms 는 아님
+```
+
 기본적으로 javascript 실행 엔진은 싱글스레드이기 때문에 한번에 한가지 일만 처리할 수 있다.
 하지만 setTimeout과 같이 callback으로 지정된 함수는 백그라운드 스레드 풀로 던져져서 실행된 함수에 맞게 대기한다.(setTimeout의 경우 delay 시간만큼 대기) 
 백그라운드 스레드 풀에서 해당 처리가 끝나면 callback의 함수를 이벤트 큐(태스크 큐)에 순차적으로 쌓는다. 
 이벤트 루프는 싱글스레드 호출 스택에 쌓인 실행 라인이 모두 사라지면 이벤트 큐에서 순차적으로 꺼내서 실행하고 이 과정을 반복한다. (setTimeout 안의 setTimeout의 callback이 가장 늦게 실행되는 이유)
+
 
 ![event loop](https://cdn.filestackcontent.com/28uVaQ7sRq6LRmU89ptG)
 
@@ -98,7 +152,6 @@ function count() {
 } 
 count();
 ```
-
 
 
 ---
