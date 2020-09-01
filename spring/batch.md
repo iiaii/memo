@@ -1,5 +1,3 @@
-# Spring/Batch
-
 # Spring Batch
 
 > 배치(Batch)는 일괄처리 라는 뜻을 가지고 있다.
