@@ -84,6 +84,7 @@
 - [@ElementCollection](https://github.com/iiaii/memo/blob/master/spring/element-collection.md)
 - [@Schedule](https://github.com/iiaii/memo/blob/master/spring/schedule.md)
 - [Spring Security](https://github.com/iiaii/memo/blob/master/spring/security.md)
+- [Spring Batch](https://github.com/iiaii/memo/blob/master/spring/batch.md)
 
 ##### repo
 
