@@ -84,10 +84,10 @@
 - [@ElementCollection](https://github.com/iiaii/memo/blob/master/spring/element-collection.md)
 - [@Schedule](https://github.com/iiaii/memo/blob/master/spring/schedule.md)
 - [Spring Security](https://github.com/iiaii/memo/blob/master/spring/security.md)
-- [Spring Batch](https://github.com/iiaii/memo/blob/master/spring/batch.md)
 
 ##### repo
 
+- [Spring Batch](https://github.com/iiaii/spring-batch-init)
 - [Spring Cache](https://github.com/iiaii/spring-cache)
 - [Spring Redis](https://github.com/iiaii/spring-redis-intro)
 - [Spring OAuth2 Tutorial](https://github.com/iiaii/spring-oauth2-tutorial), [Spring OAuth2 Login](https://github.com/iiaii/spring-oauth2-login), [Spring OAuth2 Basic Auth](https://github.com/iiaii/spring-oauth2-basic-auth) (TODO : 하나 레포로 통합하기)
