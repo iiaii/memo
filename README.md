@@ -36,6 +36,7 @@
 - [자바스크립트 개발자를 위한 타입스크립트](https://github.com/heejongahn/ts-for-jsdev) (heejongahn's Repo)
 - [setInterval / setTimeout](https://github.com/iiaii/memo/blob/master/javascript/setInterval-setTimeout.md)
 - [Path](https://github.com/iiaii/memo/blob/master/javascript/path.md)
+- [동등비교연산자 / 일치](https://github.com/iiaii/memo/blob/master/javascript/operator.md)
 
 ##### repo
 
