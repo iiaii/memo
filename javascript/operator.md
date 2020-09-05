@@ -15,7 +15,7 @@
 > `==`, `!=` : 값이 동일한지 다른지 여부를 비교 
 
 
-> `===`, `!==` : 값은 데이터 타입인지 다른 데이터 타입인지 비교 
+> `===`, `!==` : 같은 데이터 타입인지 다른 데이터 타입인지 비교 
 
 
 ##### 예시
@@ -45,18 +45,24 @@
 
 ### true 와 true로 취급할 수 있는 값은 서로 다르다
 
-- `false == 0` : true
-- `undefined == null` : true
+### 값 동일 여부 비교
+
+
+- `null == 0` : false
+- `undefined == 0` : false
 - `NaN == null` : false
-- `false === 0` : false
 - `null == false` : false
 - `NaN == NaN` : false
-- `false == ''` : true
 - `undefined == false` : false
-- `false === ''` : false
-- `null == 0` : false
+- `false == 0` : true
+- `undefined == null` : true
+- `false == ''` : true
 - `0 == ''` : true
-- `undefined == 0` : false
+
+### 같은 데이터 타입인지 비교 
+
+- `false === 0` : false
+- `false === ''` : false
 - `0 === ''` : false
 - `undefined === null` : false
 
