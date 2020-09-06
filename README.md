@@ -36,7 +36,7 @@
 - [자바스크립트 개발자를 위한 타입스크립트](https://github.com/heejongahn/ts-for-jsdev) (heejongahn's Repo)
 - [setInterval / setTimeout](https://github.com/iiaii/memo/blob/master/javascript/setInterval-setTimeout.md)
 - [Path](https://github.com/iiaii/memo/blob/master/javascript/path.md)
-- [동등비교연산자 / 일치](https://github.com/iiaii/memo/blob/master/javascript/operator.md)
+- [동등비교연산자 / 일치비교연산자](https://github.com/iiaii/memo/blob/master/javascript/operator.md)
 
 ##### repo
 
@@ -85,6 +85,7 @@
 - [@ElementCollection](https://github.com/iiaii/memo/blob/master/spring/element-collection.md)
 - [@Schedule](https://github.com/iiaii/memo/blob/master/spring/schedule.md)
 - [Spring Security](https://github.com/iiaii/memo/blob/master/spring/security.md)
+- [JPA OSIV : Open Session In View](https://github.com/iiaii/memo/blob/master/spring/osiv.md)
 
 ##### repo
 
