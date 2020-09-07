@@ -2,7 +2,7 @@
 
 ``Open Session In View 는 영속성 컨텍스트를 뷰 렌더링이 끝나는 시점까지 개방한 상태로 유지하는 것이다``
 
-> OSIV는 주의할 것이 많다. 따라서 이 글은 영속성 컨텍스트, 트랜잭션과 OSIV의 문제에 대한것을 다룬다.
+> OSIV는 주의할 것이 많다.
 
 
 ```java
@@ -97,8 +97,88 @@ LAZY, 지연로딩을 하게되면 지연로딩하게 되는 객체는 초기에
 위와 같이 지연 로딩을 하게되면 해당 객체를 조회할때 쿼리 1번, 객체의 참조객체를 액세스하는 시점에 쿼리가 1번 더 발생하게 된다. (이는 n+1 문제의 원인이며 JPQL의 `fetch join`과 batch fetch size로 해결한다)
 
 
-(추가 내용...)
+스프링은 서비스 레이어가 애플리케이션의 트랙잭션 경계를 정의하는 역할로 발생하는 문제를 해결하기 위해 등장한 `Open Session In View Pattern`을 기본으로 사용한다. 
+즉, 서비스 레이어 밖인 프레젠트 레이어 (컨트롤러)에서 엔티티를 수정하거나, 해당 객체의 내부를 참조하려고 할때 발생하는 `LazyInitializationException`을 방지하기 위해 OSIV를 활용한다.
 
+```java
+//Controller @GetMapping("") 
+public String home(Model model){ 
+  model.addAttribute("teams", teamService.findAll()); 
+  return "home"; 
+} 
+
+//Service 
+@Transactional 
+public List<Team> findAll(){ 
+  return teamRepository.findAll(); 
+}
+```
+
+> 위 결과는 LazyInitializationException이 발생한다. findAll 메서드가 종료될때 트랜잭션이 종료되면서 하이버네이트 세션이 종료되고 영속객체는 `Detacted` 상태가 된다. 그래서 종료된 영속객체의 참조객체에 접근할때마다 LazyInitializationException이 발생하는 것을 방지하기 위해 OSIV가 등장하고 Spring default로 적용되게 되었다.
+
+---
+### OSIV
+
+뷰 렌더링 시점에 영속성 컨텍스트가 존재하지 않아서 Detached 된 객체의 프록시를 초기화할 수 없는 경우 영속성 컨텍스트를 오픈된 채로 뷰 렌더링 시점까지 유지하는 것이다. 
+즉, 작업 단위를 요청 시점부터 뷰 렌더링 완료 시점까지로 확장한다. 
+
+![original osiv](https://kingbbode.github.io/images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/servlet_osiv.png)
+
+전통적인 서블릿 필터의 OSIV 패턴은 JDBC 커넥션을 뷰 렌더링이 완료되어야 풀로 반환하기 때문에 지나치게 JDBC 커넥션을 점유하고, 뷰까지 트랜잭션이 확장되며 모호한 트랜잭션 경계를 가져 문제가 생길 수 있다.
+Spring OSIV는 이런 단점을 보완하기 위해 OpenSessionInViewFilter 와 OpenSessionInViewInterceptor를 제공함으로써, 기존 뷰처럼 지연로딩을 가능하게 하는 동시에 서비스 레이어에 트랜잭션 경계를 선언할 수 있다. 
+
+![spring osiv](https://kingbbode.github.io/images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/spring_osiv.png)
+
+> 스프링 OSIV는 영속성 컨텍스트만 뷰까지 연장 가능하다. 트랜잭션이 종료되더라도 컨트롤러 세션이 열려있어서 영속 상태를 유지할 수 있고, 프록시 객체에 대한 Lazy Loding을 수행할 수 있게 된다. (flush 도 제어 가능함) 하지만 결국 DB 커넥션을 오래동안 가지고 있게되는 문제는 해결되지 않는다.
+
+
+정리하자면
+- 프레젠테이션 계층에서 트랜잭션이 없어서 엔티티 변경이 불가능하다
+- 영속성 컨텍스트는 열려있어서 지연로딩이 가능하다
+
+
+
+
+---
+### OSIV의 문제점과 주의점
+
+스프링 Boot에서는 Open Session In View 패턴을 OpenEntityManagerInViewInterceptor를 통해 default로 지원을 해주고 있다. 
+하지만 애초에 OSIV를 이용해 엔티티를 프레젠테이션 계층까지 내리는 것은 지연 로딩에 대한 여지를 주고, 혹여라도 프레젠테이션 계층에서 엔티티를 수정한 직후 트랜잭션을 시장하는 서비스 계층을 만나면 예기치 못한 변경이 발생한다. 
+
+
+```java
+// 애초에 로직적인 부분이 컨트롤러에 위치한것도 문제지만
+// 이 코드는 member의 이름이 XXX로 바뀌는 문제가 발생한다.
+@Controller
+class HelloController{
+    @Autowired
+    private HelloService helloService;
+
+    @GetMapping("/member/{memberId}")
+    public String addMember(@PathVariable Integer memberId, ModelMap modelMap){
+
+        Member member = helloService.logic(memberId);
+        member.setName("XXXX"); // 보안상의 이유로 XXXX로 세팅해서 내림
+
+        helloService.biz();
+
+        modelMap.add("member", member);
+
+        return "/member/list";
+    }
+}
+
+@Service
+class HelloService{
+    @Transactional
+    public void biz(){
+        // ...
+    }
+}
+```
+
+영속성 컨텍스트가 프레젠테이션 (컨트롤러) 계층까지 열려있는 것은 결국 DB 커넥션을 유지하는 시간이 늘어나 DB 커넥션이 모자라는 상황이 발생할 수 있다. 
+또한 위의 경우와 같이 커넥션을 열어두는 것은 디버깅하기 어려운 오류의 원인이 될수 있다. 따라서 OSIV를 끄고 (끄지 않더라도) service에서 DTO로 변환해서 내려주는 방식이 가장 안전하다.
 
 
 
