@@ -5,6 +5,7 @@
 - [Java](#java)
 - [Vue](#vue)
 - [Spring](#spring)
+- [DataBase](#database)
 - [개발 상식](#개발-상식)
 - [개발 블로그 북마크](#개발-블로그-북마크)
  
@@ -99,6 +100,14 @@
 - [Spring Study](https://github.com/iiaii/Spring_Study)
 - [Spring JPA](https://github.com/iiaii/spring-jpa-project)
 - [JPA Study](https://github.com/iiaii/JPA_Study)
+ 
+ 
+ ---
+ ### Database
+ 
+ ##### memo
+ 
+ - [Replication](https://github.com/iiaii/memo/blob/master/database/replication.md)
  
  
 ---
