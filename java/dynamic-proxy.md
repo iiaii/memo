@@ -14,7 +14,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 BookRepository bookRepository;
 
 bookRepository.findall();
-...
 ```
 
 내부를 구현한적이 없는 인터페이스인데 어떻게 동작하는 것인가?? 
