@@ -82,6 +82,7 @@
 ##### memo
 
 - [Spring Validation](https://github.com/iiaii/memo/blob/master/spring/validation.md)
+- [Spring Boot 핵심 원리](https://github.com/iiaii/memo/blob/master/spring/spring-boot-core-concept.md)
 - [Spring RestTemplate](https://github.com/iiaii/memo/blob/master/spring/rest-template.md)
 - [Spring CSRF (Cross Site Request Forgery)](https://github.com/iiaii/memo/blob/master/spring/csrf.md)
 - [@ElementCollection](https://github.com/iiaii/memo/blob/master/spring/element-collection.md)
