@@ -42,3 +42,17 @@ spring-boot-dependencies에는 dependencyManagement 영역 내에 spring-boot-st
 
 
 ---
+### Auto Configuration
+
+
+```java
+// 최상위 패키지에 위치한 메인 실행부
+@SpringBootApplication
+public class Application {
+  public static void main(String[] args) {
+    SpringApplication.run(SpringBootGettingStartedApplication.class, args);
+  }
+}
+```
+
+`@SpringBootApplication` 이 위치한 메인부터 빈으로 등록할 컴포넌트들을 찾아 등록하고 빈
