@@ -56,3 +56,24 @@ public class Application {
 ```
 
 `@SpringBootApplication` 이 위치한 메인부터 빈으로 등록할 컴포넌트들을 찾아 등록하고 빈
+
+
+
+
+빈은 2단계로 나눠서 읽힌다.
+
+1. `@ComponentScan`
+2. `@EnableAutoConfiguration`
+
+`@ComponentScan`은 해당 패키지 이하의 모든 `@Component`를 가진 클래스들을 스캔해서 빈으로 등록한다.
+
+`@EnableAutoConfiguration`은 spring.factories 파일의 `org.springframework.boot.autoconfigure.EnableAutoConfiguration`에 값으로 기본 설정 클래스 파일들이 명시되어 있다. (컨벤션)
+
+전부 자바 설정 파일이지만 `@ConditionalOnClass`, `@ConditionalOnMissingBean`와 같은 조건이 붙어 빈으로 등록하기도하고 등록하지 않기도 한다.
+
+즉, `@EnableAutoConfiguration`을 통해 spring.factories 파일의 수많은 자동 설정이 조건에 따라 자동 생성된다.
+
+
+
+> `@Configuration`은 빈을 등록하는 자바 설정 파일
+
