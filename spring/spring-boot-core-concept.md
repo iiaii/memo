@@ -44,6 +44,7 @@ spring-boot-dependencies에는 dependencyManagement 영역 내에 spring-boot-st
 ---
 ### Auto Configuration
 
+스프링 부트 프로젝트의 메인 클래스에는 `@SpringBootApplication`이 붙어있다.
 
 ```java
 // 최상위 패키지에 위치한 메인 실행부
@@ -55,25 +56,61 @@ public class Application {
 }
 ```
 
-`@SpringBootApplication` 이 위치한 메인부터 빈으로 등록할 컴포넌트들을 찾아 등록하고 빈
+`@SpringBootApplication` 는 크게 3가지로 구성되어있다.
+
+- `@SpringBootConfiguration`
+- `@ComponentScan`
+- `@EnableAutoConfiguration`
 
 
+> `@SpringBootConfiguration`은 SpringBootConfiguration 이라는 이름을 제외하면 사실상 `@Configuration`과 동일하다.
 
 
-빈은 2단계로 나눠서 읽힌다.
+SpringBootApplication에서 빈은 2단계로 나눠서 읽힌다.
 
 1. `@ComponentScan`
 2. `@EnableAutoConfiguration`
 
 `@ComponentScan`은 해당 패키지 이하의 모든 `@Component`를 가진 클래스들을 스캔해서 빈으로 등록한다.
 
-`@EnableAutoConfiguration`은 spring.factories 파일의 `org.springframework.boot.autoconfigure.EnableAutoConfiguration`에 값으로 기본 설정 클래스 파일들이 명시되어 있다. (컨벤션)
-
-전부 자바 설정 파일이지만 `@ConditionalOnClass`, `@ConditionalOnMissingBean`와 같은 조건이 붙어 빈으로 등록하기도하고 등록하지 않기도 한다.
+`@EnableAutoConfiguration`은 spring.factories 파일의 `org.springframework.boot.autoconfigure.EnableAutoConfiguration`에 값으로 기본 설정 클래스 파일들이 명시되어 있고, 해당 클래스들
+(전부 자바 설정 파일이지만 `@ConditionalOnClass`, `@ConditionalOnMissingBean`와 같은 조건이 붙어 빈으로 등록하기도하고 등록하지 않기도 한다.)
 
 즉, `@EnableAutoConfiguration`을 통해 spring.factories 파일의 수많은 자동 설정이 조건에 따라 자동 생성된다.
 
-
-
 > `@Configuration`은 빈을 등록하는 자바 설정 파일
+
+
+##### ComponentScan을 먼저 하는 이유 (2단계에 걸쳐서 빈을 등록하는 이유)
+
+SpringBootApplication에서 `@ComponentScan`을 먼저 진행하는 이유는 `@EnableAutoConfiguration`에서 자동 설정되는 빈들보다 우선권을 갖기 위함이다. 
+
+만약 현재 프로젝트에서 자동설정에서 만들어지는 빈과 동일한 클래스의 빈을 만들때 Bean의 이름과 Qualifier로 직접 지정해야하는 번거로움이 있다. 
+
+spring.factories 파일의 EnableAutoConfiguration 값으로 잡힌 클래스 파일들을 살펴보면 `@ConditionalOnMissingBean`과 같은 어노테이션이 있는데, 
+
+`@ComponentScan`을 진행하면서 해당 클래스가 빈으로 등록되지 않은 경우에만 빈으로 등록한다는 조건이다. 
+
+정리하자면, 2단계에 걸쳐서 빈을 등록하고 또 `@ComponentScan`을 먼저 진행하는 이유는
+
+현재 프로젝트 파일에서 `@EnableAutoConfiguration` 과정에서 등록되는 빈들에 대해 우선권을 주거나 조건을 만들수 있게 하기 위함이다. 
+
+
+그래서 사실 SpringBootApplication은 `@Configuration`과 `@ComponentScan`만 있어도 Spring Application이 구동된다.
+
+```java
+// 실행해보면 구동된다
+
+// @SpringBootApplication
+@Configuration
+@ComponentScan
+// @EnableAutoConfiguration
+public class Application {
+  SpringApplication application = new SpringApplication(Application.class);
+  application.setWebApplication(WebApplicationType.NONE);
+  application.run(args);
+}
+```
+
+
 
