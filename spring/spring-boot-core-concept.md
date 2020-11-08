@@ -91,16 +91,14 @@ spring.factories 파일의 EnableAutoConfiguration 값으로 잡힌 클래스 �
 
 `@ComponentScan`을 진행하면서 해당 클래스가 빈으로 등록되지 않은 경우에만 빈으로 등록한다는 조건이다. 
 
-정리하자면, 2단계에 걸쳐서 빈을 등록하고 또 `@ComponentScan`을 먼저 진행하는 이유는
+정리하자면, 2단계에 걸쳐서 빈을 등록하고 또 `@ComponentScan`을 먼저 진행하는 이유는 
 
 현재 프로젝트 파일에서 `@EnableAutoConfiguration` 과정에서 등록되는 빈들에 대해 우선권을 주거나 조건을 만들수 있게 하기 위함이다. 
 
 
-그래서 사실 SpringBootApplication은 `@Configuration`과 `@ComponentScan`만 있어도 Spring Application이 구동된다.
+> 사실 `@Configuration`과 `@ComponentScan`만 있어도 Spring Application이 구동된다.
 
 ```java
-// 실행해보면 구동된다
-
 // @SpringBootApplication
 @Configuration
 @ComponentScan
@@ -112,5 +110,19 @@ public class Application {
 }
 ```
 
+
+---
+### 스프링부트 웹서버
+
+
+- 스프링 부트는 서버가 아니다
+
+1. 톰캣 객체 생성
+2. 포트 설정
+3. 톰캣에 컨텍스트 추가
+4. 서블릿 만들기
+5. 톰캣에 서블릿 추가
+6. 컨텍스트에 서블릿 맵핑
+7. 톰캣 실행 및 대기
 
 
