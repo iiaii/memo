@@ -115,7 +115,11 @@ public class Application {
 ### 스프링부트 웹서버
 
 
-- 스프링 부트는 서버가 아니다
+스프링 부트는 서버가 아니다. 
+
+스프링 부트 자동설정에 내장 서블릿 컨테이너 (tomcat, jetty, undertow)가 설정되어 있으며, 기본적으로 spring-boot-starter-web은 tomcat을 사용해 서버를 띄운다.
+
+``spring-boot-autoconfigure > META-INF > spring.factories > ServletWebServerFactoryAutoConfiguration > EmbeddedTomcat...``
 
 1. 톰캣 객체 생성
 2. 포트 설정
@@ -124,5 +128,7 @@ public class Application {
 5. 톰캣에 서블릿 추가
 6. 컨텍스트에 서블릿 맵핑
 7. 톰캣 실행 및 대기
+
+[Tomcat, Servlet, JSP](https://github.com/iiaii/memo/blob/master/spring/servlet_jsp.md)
 
 
