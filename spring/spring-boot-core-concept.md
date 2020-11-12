@@ -132,3 +132,49 @@ public class Application {
 [Tomcat, Servlet, JSP](https://github.com/iiaii/memo/blob/master/spring/servlet_jsp.md)
 
 
+
+
+---
+### SpringApplication
+
+##### ApplicationListener
+
+
+- ApplicationStartingEvent : Spring Boot Application 시작 전
+- ApplicationStartedEvent : Spring Boot Application 시작 후
+
+```java
+public class SampleListener implements ApplicationListener<ApplicationStartingEvent> {
+  
+  @Override
+  public void onApplicationEvent(ApplicationStartingEvent applicationStartingEvent) {
+    System.out.println("Application is Starting");
+  }
+}
+
+
+// main
+public static void main(String[] args) {
+  SpringApplication app = new SpringApplication(StpringInitApplication.class);
+  app.addListeners(new SampleListener());
+  app.run(args);
+}
+```
+
+
+##### ApplicationRunner
+
+```java
+//  보편적으로 많이 사용되는 ApplicationRunner
+@Component
+public class SampleRunner implements ApplicationRunner {
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        System.out.println("foo: " + args.containsOption("foo"));
+        System.out.println("bar: " + args.containsOption("bar"));
+    }
+}
+```
+
+
