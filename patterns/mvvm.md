@@ -10,7 +10,7 @@ View Model에 명령을 전달하고 Data Binding으로 View Model의 값이 변
 
 
 - Model : Application에서 사용되는 데이터와 데이터 처리 영역 (View는 View Model을 관찰하고 있다가 상태 변화가 감지되면 화면을 갱신한다)
-- View : 객체의 입력, 사용자에게 보여지는 UI 영역 (발생하는 이벤트를 Presenter에 위임, Presenter는 View의 인터페이스를 가짐)
+- View : 객체의 입력, 사용자에게 보여지는 UI 영역
 - View Model : View - Model 사이의 매개체로서 View의 비즈니스 로직이 포함되고, View가 Data Binding을 통해 변경이 잘 적용될 수 있도록 Model의 데이터를 가공하여 들고 있는다.
 
 
