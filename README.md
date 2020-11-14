@@ -89,7 +89,7 @@
 - [@Schedule](https://github.com/iiaii/memo/blob/master/spring/schedule.md)
 - [Spring Security](https://github.com/iiaii/memo/blob/master/spring/security.md)
 - [JPA OSIV : Open Session In View](https://github.com/iiaii/memo/blob/master/spring/osiv.md)
-- [Tomcat, Servlet, JSP](https://github.com/iiaii/memo/blob/master/spring/servlet_jsp.md)
+- [Tomcat - Servlet, JSP](https://github.com/iiaii/memo/blob/master/spring/servlet_jsp.md)
 - [@Profile / @ActiveProfile](https://github.com/iiaii/memo/blob/master/spring/profile_ActiveProfile.md)
 
 ##### repo
