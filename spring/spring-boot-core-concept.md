@@ -179,4 +179,15 @@ public class SampleRunner implements ApplicationRunner {
 
 
 ---
-# 내부설정
+### 내부설정
+
+
+```java
+@SpringBootApplication
+public class SpringInitApplication {
+  public static void main(String[] args) {
+    ...
+  }
+}
+```
+
