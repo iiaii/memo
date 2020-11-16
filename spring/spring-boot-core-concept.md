@@ -179,15 +179,45 @@ public class SampleRunner implements ApplicationRunner {
 
 
 ---
-### 내부설정
+### 외부설정
+
+`application.properties`, `application.yml` 과 같은 외부설정 파일은 Spring에서 정해진 우선순위에 따라 덮어쓰이며 실행된다. 
+
+완전한 덮어쓰기가 아닌 없는 항목들은 유지되고 중복되는 값들은 우선순위에따라 덮어쓰여진다.
 
 
-```java
-@SpringBootApplication
-public class SpringInitApplication {
-  public static void main(String[] args) {
-    ...
-  }
-}
-```
+- `application.properties` 우선순위 (높은게 낮은것을 덮어씀)
+
+1. file: ./config/ (현재 프로젝트 루트의 config 디렉토리)
+2. file: ./ (프로젝트 루트, jar 파일의 경우 실행 위치)
+3. classpath:/config/
+4. classpathe:/
+
+
+- 프로퍼티 우선 순위
+
+1. 유저 홈 디렉토리에 있는 spring-boot-dev-tools.properties
+2. 테스트에 있는 @TestPropertySource
+3. @SpringBootTest 애노테이션의 properties 애트리뷰트
+4. 커맨드 라인 아규먼트
+5. SPRING_APPLICATION_JSON (환경 변수 또는 시스템 프로티) 에 들어있는 프로퍼티
+6. ServletConfig 파라미터
+7. ServletContext 파라미터
+8. java:comp/env JNDI 애트리뷰트
+9. System.getProperties() 자바 시스템 프로퍼티
+10. OS 환경 변수
+11. RandomValuePropertySource
+12. JAR 밖에 있는 특정 프로파일용 application properties
+13. JAR 안에 있는 특정 프로파일용 application properties
+14. JAR 밖에 있는 application properties
+15. JAR 안에 있는 application properties
+16. @PropertySource
+17. 기본 프로퍼티 (SpringApplication.setDefaultProperties)
+
+
+
+
+
+
+
 
