@@ -215,7 +215,87 @@ public class SampleRunner implements ApplicationRunner {
 17. 기본 프로퍼티 (SpringApplication.setDefaultProperties)
 
 
+##### @ConfigurationProperties
 
+
+```java
+// application.properties의 iiaii prefix의 값을 모두 객체 프로퍼티로 접근 가능
+@Component
+@ConfigurationProperties("iiaii")
+@Getter
+public class iiaiiProperties {
+
+  private String name;
+
+  private int age;
+
+  private String fullName;
+}
+```
+
+`@Component`를 통해 빈으로 등록되어 주입받아 사용할 수 있다.
+
+대신에 다음과 같은 설정을 해주어야 한다.
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-configuration-processor</artifactId>
+</dependency>
+```
+
+
+이외에도 융통성있는 바인딩을 자동 지원해준다.
+
+- context-path (케밥)
+- context_path (언더스코어)
+- contextPath (캐멀)
+- CONTEXTPATH
+
+또한 스프링이 타입캐스팅을 지원해서 자동으로 타입 컨버징이 된다. (properties의 값을 int, long 에 맞게 변환)
+
+> `@Value`는 SpEL 을 사용할 수 있지만 융통성있는 바인딩이 불가능하다.
+
+- `@DurationUnit`
+
+```yaml
+iiaii:
+  sessionTimeout = 25
+```
+
+
+```java
+// Duration 타입으로 캐스팅된다
+@DurationUnit(ChronoUnit.SECONDS)
+private Duration sessionTimeout = Duration.ofSeconds(30);
+```
+
+하지만 설정파일에서 `s`를 붙이면 자동으로 변환해준다.
+
+```yaml
+iiaii:
+  sessionTimeout = 25s
+```
+
+
+- `@Validated`
+
+`@Validated` 어노테이션으로 내용을 검증할 수 있다.
+
+```java
+@Component
+@ConfigurationProperties("iiaii")
+@Validated
+@Getter
+publci class iiaiiProperties {
+  
+  @NotEmpty
+  String name;
+  
+  @Min(20)
+  int age;
+}
+```
 
 
 
