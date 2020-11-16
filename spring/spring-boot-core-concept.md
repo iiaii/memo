@@ -298,6 +298,49 @@ publci class iiaiiProperties {
 ```
 
 
+### 프로파일
 
+```java
+// prod configuration
 
+@Profile("prod")
+@Configuration
+public class ProdConfiguration {
+
+    @Bean
+    public String hello() {
+        return "hello prod";
+    }
+}
+```
+
+```java
+// test configuration
+
+@Profile("test")
+@Configuration
+public class TestConfiguration {
+
+    @Bean
+    public String hello() {
+        return "hello test";
+    }
+}
+```
+
+```yaml
+spring:
+  profiled:
+    active:
+      prod
+```
+
+```
+// 결과
+hello prod
+```
+
+외부설정 우선순위를 사용해서 커맨드라인이나 외부 설정파일로 실행 프로퍼티를 변경할 수 있다.
+
+이외에도 `spring.profile.include`를 통해 다른 properties(yml)을 호출해서 외부설정파일을 활성화 할 수 있다.
 
