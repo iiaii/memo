@@ -297,7 +297,7 @@ publci class iiaiiProperties {
 }
 ```
 
-
+---
 ### 프로파일
 
 ```java
@@ -343,6 +343,20 @@ hello prod
 외부설정 우선순위를 사용해서 커맨드라인이나 외부 설정파일로 실행 프로퍼티를 변경할 수 있다.
 
 이외에도 `spring.profile.include`를 통해 다른 properties(yml)을 호출해서 외부설정파일을 활성화 할 수 있다.
+
+---
+### 로그설정
+
+```
+spring.output.ansi.enabled=always
+logging.file.path=logs
+```
+
+> 루트의 logs 디렉토리로 로그가 쌓이고 특정 주기만큼 아카이빙하도록 설정도 가능하다
+
+
+
+
 
 
 
