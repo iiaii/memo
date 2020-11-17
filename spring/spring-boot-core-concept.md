@@ -354,10 +354,109 @@ logging.file.path=logs
 
 > 루트의 logs 디렉토리로 로그가 쌓이고 특정 주기만큼 아카이빙하도록 설정도 가능하다
 
+slf4j가 PSA 처럼 다양한 로거들의 파사드로 위치해서 감싸도록 구성되어있고 스프링부트는 기본적으로 logback을 사용하도록 되어있다.
+
+
+---
+### 테스트
+
+- 테스트 종류 (webflux 테스트 추천)
+
+```java
+@RunWith(SpringRunner.class)
+//@SpringBootTest(webEnvironment = WebEnvironment.MOCK)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+public class SampleServiceTest {
+
+    @Autowired
+    MockMvc mockMvc;
+
+    @Autowired
+    TestRestTemplate testRestTemplate;
+
+    @MockBean
+    SampleService mockSampleService;
+
+    @Autowired
+    WebTestClient webTestClient;
+
+    // static 메서드 자동완성이 안되서 불편
+    @Test
+    public void mock_test1() throws Exception {
+        mockMvc.perform(get("/hello"))
+            .andExpect(status().isOk())
+            .andExpect(content().string("hello iiaii"))
+            .andDo(print());
+    }
+
+    // RANDOMPORT
+    // restTemplate 헷갈려서 추천하지 않음
+    @Test
+    public void restTemplate_test2() throws Exception {
+        String result = testRestTemplate.getForObject("/hello", String.class);
+        assertThat(result).isEqualTo("hello iiaii");
+    }
+
+    // RANDOMPORT
+    // restTemplate 헷갈려서 추천하지 않음
+    @Test
+    public void restTemplate_mockSampleService_test3() throws Exception {
+        when(mockSampleService.getName()).thenReturn("iiaii123");
+
+        String result = testRestTemplate.getForObject("/hello", String.class);
+        assertThat(result).isEqualTo("hello iiaii123");
+    }
+
+    // RANDOMPORT
+    // 가장 추천! - webflux
+    @Test
+    public void webflux_test4() throws Exception {
+        when(mockSampleService.getName()).thenReturn("iiaii123");
+
+        webTestClient.get().uri("/hello").exchange()
+            .expectStatus().isOk()
+            .expectBody(String.class).isEqualTo("hello iiaii123");
+    }
+}
+```
+
+
+##### 슬라이스 테스트 
+
+테스트할때 모든 빈을 등록하지 않고 빠르게 테스트하고 데이터 롤백과 같은 부가 기능을 사용하려고 할때, 즉 레이어 별로 잘라서 테스트하고자 할때 슬라이스 테스트를 할수 있다.
+
+- `@JsonTest` : Json 결과에 특화된 테스트
+- `@WebMvcTest` : 웹과 관련된 것만(컨트롤러) 빈으로 등록해서 테스트 (웹계층 밑의 것은 `@MockBean`으로 주입받아야함)
+- `@WebFluxTest` 
+- `@DataJpaTest` : repository 관련 테스트를 할 수 있고, 기본적으로 테스트가 종료되면 롤백을 한다
+
+> 슬라이스 테스트는 통합테스트인 `@SpringBootTest`와 달리 빠르게 일부분만을 등록해서 테스트 가능하다.
 
 
 
+##### OutputCapture
+
+logger를 통한 로그나 System.out.println()으로 출력되었는지 확인하는 것으로 테스트를 할 수있다.
 
 
+```java
+// 선언
+@Rule
+public OutputCaptureRule outputCaptureRule = new OutputCaptureRule();
 
+// 테스트
+@Test
+public void logOutputCature_test() throws Exception {
+    when(mockSampleService.getName()).thenReturn("iiaii123");
+
+    mockMvc.perform(get("/hello"))
+        .andExpect(content().string("hello iiaii123"));
+
+    assertThat(outputCaptureRule.toString())
+        .contains("holoman")
+        .contains("skip");
+
+}
+```
 
