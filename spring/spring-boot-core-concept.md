@@ -424,7 +424,7 @@ public class SampleServiceTest {
 
 ##### 슬라이스 테스트 
 
-테스트할때 모든 빈을 등록하지 않고 빠르게 테스트하고 데이터 롤백과 같은 부가 기능을 사용하려고 할때, 즉 레이어 별로 잘라서 테스트하고자 할때 슬라이스 테스트를 할수 있다.
+테스트할때 모든 빈을 등록하지 않고 빠르게 테스트하고 데이터 롤백과 같은 부가 기능을 사용하려고 할때, 즉 레이어 별로 잘라서 테스트하고자 할때 슬라이스 테스트를 할 수 있다.
 
 - `@JsonTest` : Json 결과에 특화된 테스트
 - `@WebMvcTest` : 웹과 관련된 것만(컨트롤러) 빈으로 등록해서 테스트 (웹계층 밑의 것은 `@MockBean`으로 주입받아야함)
@@ -456,7 +456,6 @@ public void logOutputCature_test() throws Exception {
     assertThat(outputCaptureRule.toString())
         .contains("holoman")
         .contains("skip");
-
 }
 ```
 
