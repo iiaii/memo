@@ -483,3 +483,12 @@ public class ApplicationTest {
 }
 ```
 
+
+- `@RunWith`를 사용하면 JUnit에 내장된 러너가 아닌 정의된 러너를 사용한다 
+- `@SpringBootTest`
+    - properties : 테스트가 실행되기전에 key/value 형태로 프로퍼티를 추가할수 있다
+    - classes : 애플리케이션 컨텍스트에 로드할 클래스를 지정한다. 따로 지정하지 않으면 `@SpringBootConfiguraion`을 찾아서 로드한다
+    - webEnvironment : 애플리케이션이 실행될 때의 웹 환경을 설정할 수 있다. (기본값은 Mock 서블릿 로드)
+- `@ActiveProfiles`를 사용하면 원하는 프로파일 환경을 지정하여 테스트가 가능하다
+
+[스프링 부트 테스트](https://cheese10yun.github.io/spring-boot-test/)
