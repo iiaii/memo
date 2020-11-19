@@ -433,8 +433,6 @@ public class SampleServiceTest {
 
 > 슬라이스 테스트는 통합테스트인 `@SpringBootTest`와 달리 빠르게 일부분만을 등록해서 테스트 가능하다.
 
-
-
 ##### OutputCapture
 
 logger를 통한 로그나 System.out.println()으로 출력되었는지 확인하는 것으로 테스트를 할 수있다.
@@ -456,6 +454,29 @@ public void logOutputCature_test() throws Exception {
     assertThat(outputCaptureRule.toString())
         .contains("holoman")
         .contains("skip");
+}
+```
+
+##### SpringBootTest DB 롤백
+
+`@SpringBootTest`에서 `@Test`와 `@Transactional`이 같이 사용되면 기본적으로 DB 롤백을 한다. 
+
+지정된 TrasactionManager를 명시함으로써 테스트를 구분지을 수도 있다. `@Transactional`은 class나 메서드 어디에든 `@Test`와 함께 사용되기만 하면 롤백된다.
+
+또한 DB상에 데이터가 추가되는 테스트에서 롤백되는 경우 AutoIncrement 설정, 즉 생성 순서가 깨질수 있다.
+
+```java
+@RunWith(SpringRunner.class)
+@ActiveProfiles("test")
+@SpringBootTest
+@Transactional(value = "transactionManager")
+public class ApplicationTest {
+
+    @Test
+    // @Transactional(value = "transactionManager")
+    public void facetag_저장() throws Exception {
+        ...
+    }
 }
 ```
 
