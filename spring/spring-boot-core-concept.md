@@ -463,7 +463,10 @@ public void logOutputCature_test() throws Exception {
 
 지정된 TrasactionManager를 명시함으로써 테스트를 구분지을 수도 있다. `@Transactional`은 class나 메서드 어디에든 `@Test`와 함께 사용되기만 하면 롤백된다.
 
-또한 DB상에 데이터가 추가되는 테스트에서 롤백되는 경우 AutoIncrement 설정, 즉 생성 순서가 깨질수 있다.
+DB상에 데이터가 추가되는 테스트에서 롤백되는 경우 AutoIncrement 설정, 즉 생성 순서가 깨질수 있다. 
+
+또한 RANDOM_PORT나 DEFINED_PORT로 테스트 설정을 하면 실제 테스트 서버는 별도의 스레드에서 수행되기 때문에 Rollback이 이루어지지 않는다.
+(`@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)`)
 
 ```java
 @RunWith(SpringRunner.class)
