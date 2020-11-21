@@ -492,3 +492,7 @@ public class ApplicationTest {
 - `@ActiveProfiles`를 사용하면 원하는 프로파일 환경을 지정하여 테스트가 가능하다
 
 [스프링 부트 테스트](https://cheese10yun.github.io/spring-boot-test/)
+
+
+---
+### 스프링 테스트
