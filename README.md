@@ -91,6 +91,7 @@
 - [JPA OSIV : Open Session In View](https://github.com/iiaii/memo/blob/master/spring/osiv.md)
 - [Tomcat - Servlet, JSP](https://github.com/iiaii/memo/blob/master/spring/servlet_jsp.md)
 - [@Profile / @ActiveProfile](https://github.com/iiaii/memo/blob/master/spring/profile_ActiveProfile.md)
+- [Spring Batch 세미나 내용정리](https://github.com/iiaii/memo/blob/master/spring/spring-batch.md)
 
 ##### repo
 
