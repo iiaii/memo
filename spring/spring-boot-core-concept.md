@@ -494,8 +494,3 @@ public class ApplicationTest {
 [스프링 부트 테스트](https://cheese10yun.github.io/spring-boot-test/)
 
 
----
-### 스프링 배치
-
-
-[Spring batch](https://youtu.be/_nkJkWVH-mo)
