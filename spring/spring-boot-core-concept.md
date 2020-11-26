@@ -494,3 +494,78 @@ public class ApplicationTest {
 [스프링 부트 테스트](https://cheese10yun.github.io/spring-boot-test/)
 
 
+---
+### Spring ExceptionHandler
+
+다음과 같은 형태로 customized exception을 throw하고 해당 결과를 처리하도록 구성할 수 있다.
+
+```java
+@ControllerAdvice(annotations = Controller.class)
+public class Exceptions {
+    @ExceptionHandler(SampleException.class)
+    public @ResponseBody AppError sampleError(SampleException e) {
+        AppError appError = new AppError();
+        appError.setMessage("error.app.key");
+        appError.setReason("IDK");
+        return appError;
+    }
+}
+```
+
+- `@Controller`와 `@RestController`의 차이
+
+`@Controller`는 Spring MVC 에서 View를 반환하기 위한 형태로 사용된다.
+`@Controller` 메서드에서 `@ResponseBody`를 선언해서 객체를 리턴하는 방법도 있지만, 데이터 전송만을 위해 사용되는것이 `@RestController` 이다.
+`@RestController`는 View를 거치지않는다. (@RestController = @Controller + @ResponseBody)
+
+> @Controller의 실행 흐름
+
+`Client -> Request -> Dispatcher Servlet -> Handler Mapping -> Controller -> View -> Dispatcher Servlet -> Response -> Client `
+
+> @ResponseBody의 실행 흐름
+
+`Client -> Request -> Dispatcher Servlet -> Handler Mapping -> Controller (ResponseBody)-> Response -> Client`
+
+
+@RestController의 실행 흐름
+
+
+`Client -> HTTP Request -> Dispatcher Servlet -> Handler Mapping -> RestController (자동 ResponseBody 추가)-> HTTP Response -> Client`
+
+---
+### Spring HATEOAS
+
+엄격한 REST API에서는 요청 결과 자체로 전이 가능한 API를 알수 있어야한다. 다음과 같이 HATEOAS를 만족할 수 있다.
+
+```java
+@GetMapping("/hello")
+public EntityModel<Hello> hello() {
+    Hello hello = new Hello();
+    hello.setPrefix("Hey, ");
+    hello.setName("iiaii");
+
+    EntityModel<Hello> helloEntityModel = new EntityModel<>(hello);
+    helloEntityModel.add(linkTo(methodOn(SampleController.class).hello()).withSelfRel());
+
+    return helloEntityModel;
+}
+```
+
+
+### Spring CORS
+
+웹은 기본적으로 Single-Origin Policy를 지원한다. 서로 다른 Origin (= URI 스키마[http/https] + hostname + port) 간의 호출이나 데이터 교환의 경우 우회하는 로직이 추가되어야한다.
+
+
+```java
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+            .allowedOrigins("http://localhost:18080");
+    }
+}
+```
+
