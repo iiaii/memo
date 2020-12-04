@@ -1,10 +1,10 @@
-[우아한 테크 세미나 이동욱 스프링 배치](https://www.youtube.com/watch?v=_nkJkWVH-mo&t=1432s)
+[우아한 테크 세미나 (이동욱) 스프링 배치](https://www.youtube.com/watch?v=_nkJkWVH-mo&t=1432s)
 
 ## Batch
 
 - 배치 처리는 컴퓨터에서 사람과 상호작용 없이 이어지는 프로그램(작업)들의 실행이다
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7161d1fb-202e-48ba-b541-3c206f3c18a3/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7161d1fb-202e-48ba-b541-3c206f3c18a3/Untitled.png)
+![batch](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7161d1fb-202e-48ba-b541-3c206f3c18a3/Untitled.png)
 
 - Web Application 은 사용자와 상호작용이 지속적으로 이루어진다 (실시간 처리 / 상대적인 속도 / QA 용이성)
 - Batch Application 은 한번 요청 후 상호작용 없이 내부적으로 완결된다 (후속 처리 / 절대적인 속도 / QA 복잡성) → Batch는 반드시 테스트 코드를 작성해야함 (QA가 힘들기 때문)
@@ -15,7 +15,7 @@
 
 - Quartz는 **스케줄링 프레임워크**
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/33b2d106-7247-426f-8f25-0a25b7504291/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/33b2d106-7247-426f-8f25-0a25b7504291/Untitled.png)
+![quartz](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/33b2d106-7247-426f-8f25-0a25b7504291/Untitled.png)
 
 ### Batch Application 이 필요한 상황
 
@@ -28,9 +28,9 @@
 
 ## Job / Step / Tasklet
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3689c0f4-5f78-416f-b137-7cbdf524661e/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3689c0f4-5f78-416f-b137-7cbdf524661e/Untitled.png)
+![job-step-tasklet-1](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3689c0f4-5f78-416f-b137-7cbdf524661e/Untitled.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/abfda475-29e0-4999-a0c8-c552b8499a2e/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/abfda475-29e0-4999-a0c8-c552b8499a2e/Untitled.png)
+![job-step-tasklet-2](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/abfda475-29e0-4999-a0c8-c552b8499a2e/Untitled.png)
 
 Tasklet 은 인터페이스, ChunkOrientedTasklet은 Tasklet의 구현체 (청크단위로 처리하도록)
 
@@ -70,11 +70,11 @@ Spring Batch의 JobParameter는 Long / String / Double / Date 타입을 지원�
 
 → @Value 의 특성을 이용해서 해결
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/883dfa7f-5e22-48e1-8844-010f5bfd206f/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/883dfa7f-5e22-48e1-8844-010f5bfd206f/Untitled.png)
+![job-step-tasklet-3](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/883dfa7f-5e22-48e1-8844-010f5bfd206f/Untitled.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6064b917-ba7d-4eef-b4c0-2d82249b97e9/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6064b917-ba7d-4eef-b4c0-2d82249b97e9/Untitled.png)
+![job-step-tasklet-4](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6064b917-ba7d-4eef-b4c0-2d82249b97e9/Untitled.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/99de0f69-1bf2-4687-bc49-b8f350b30e1b/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/99de0f69-1bf2-4687-bc49-b8f350b30e1b/Untitled.png)
+![job-step-tasklet-5](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/99de0f69-1bf2-4687-bc49-b8f350b30e1b/Untitled.png)
 
 ### JobScope, StepScope는 Late Binding (늦은 할당)
 
@@ -84,7 +84,7 @@ Spring Batch의 JobParameter는 Long / String / Double / Date 타입을 지원�
 
 JobParameter 값에 따라 Reader와 Processor를 교체
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4f04b578-0c4e-402f-8d14-ad380aedc939/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4f04b578-0c4e-402f-8d14-ad380aedc939/Untitled.png)
+![jobparameter](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4f04b578-0c4e-402f-8d14-ad380aedc939/Untitled.png)
 
 ---
 
@@ -110,17 +110,17 @@ JobParameter 값에 따라 Reader와 Processor를 교체
 
 ## Spring Batch 실행
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/363c8492-b3ec-4e8f-b297-41877e0b2a63/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/363c8492-b3ec-4e8f-b297-41877e0b2a63/Untitled.png)
+![batch](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/363c8492-b3ec-4e8f-b297-41877e0b2a63/Untitled.png)
 
 - Jenkins에 스크립트로 커맨드 입력하면 된다
 
 ### 공통되는 설정 관리
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0895cb8c-a696-40d4-b804-cab18e3d9436/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0895cb8c-a696-40d4-b804-cab18e3d9436/Untitled.png)
+![setting1](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0895cb8c-a696-40d4-b804-cab18e3d9436/Untitled.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4b5d3f9f-521a-42d0-a749-872a29d1d3bb/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4b5d3f9f-521a-42d0-a749-872a29d1d3bb/Untitled.png)
+![setting2](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4b5d3f9f-521a-42d0-a749-872a29d1d3bb/Untitled.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bcc445f5-4845-4230-a02f-19d54ff2a174/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bcc445f5-4845-4230-a02f-19d54ff2a174/Untitled.png)
+![setting3](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bcc445f5-4845-4230-a02f-19d54ff2a174/Untitled.png)
 
 ---
 
@@ -137,11 +137,11 @@ JobParameter 값에 따라 Reader와 Processor를 교체
 
 ### realink 배포
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bd59b895-b84c-4e58-bb6d-68f5f78ef946/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bd59b895-b84c-4e58-bb6d-68f5f78ef946/Untitled.png)
+![readlink1](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bd59b895-b84c-4e58-bb6d-68f5f78ef946/Untitled.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/82690316-7f8c-428c-904a-931c4050b945/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/82690316-7f8c-428c-904a-931c4050b945/Untitled.png)
+![readlink2](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/82690316-7f8c-428c-904a-931c4050b945/Untitled.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9c1f4824-cd23-48b4-8bb5-6d38ef7ab2a8/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9c1f4824-cd23-48b4-8bb5-6d38ef7ab2a8/Untitled.png)
+![readlink3](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9c1f4824-cd23-48b4-8bb5-6d38ef7ab2a8/Untitled.png)
 
 ## 파이프라인
 
@@ -155,11 +155,11 @@ Step을 여러개로 나누기보다는 Job 1개에 Step 1개로 배치하는것
 
 - 제어할 수 없는 코드를 직접 생성할때
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f12a4ec5-4a4f-444d-82b2-aa0d9930283b/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f12a4ec5-4a4f-444d-82b2-aa0d9930283b/Untitled.png)
+![pipline](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f12a4ec5-4a4f-444d-82b2-aa0d9930283b/Untitled.png)
 
 파라미터가 없는 형태에서 파라미터를 외부에서 넣어줄 수 있도록 JobParameter로 변경
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c491b140-a5b1-45eb-aed0-74745eeb6dde/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c491b140-a5b1-45eb-aed0-74745eeb6dde/Untitled.png)
+![pipline2](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c491b140-a5b1-45eb-aed0-74745eeb6dde/Untitled.png)
 
 젠킨스의 Date Parameter 플러그인을 추가해서 날짜형식에 맞추어서 파라미터 제공
 
@@ -167,7 +167,7 @@ Step을 여러개로 나누기보다는 Job 1개에 Step 1개로 배치하는것
 
 ## 테스트 코드
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7d8b4f97-8763-4fb5-8051-ae96856eeb80/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7d8b4f97-8763-4fb5-8051-ae96856eeb80/Untitled.png)
+![testcode1](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7d8b4f97-8763-4fb5-8051-ae96856eeb80/Untitled.png)
 
 하지만 Spring Batch 테스트 케이스가 많은 경우 문제가 된다.
 
@@ -175,7 +175,7 @@ Step을 여러개로 나누기보다는 Job 1개에 Step 1개로 배치하는것
 
 이유는 @ConditionalOnProperty!
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a22363e6-58dc-4e61-be57-d9240c6a3925/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a22363e6-58dc-4e61-be57-d9240c6a3925/Untitled.png)
+![testcode2](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a22363e6-58dc-4e61-be57-d9240c6a3925/Untitled.png)
 
 해결하기 위해 우선 Environment가 변경되는 조건을 확인
 
@@ -187,9 +187,9 @@ Step을 여러개로 나누기보다는 Job 1개에 Step 1개로 배치하는것
 
 → @ConditionalOnProperty, @TestPropertySource 제거!
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6c93fd05-b5a7-46e7-8afa-f5aa7383cc58/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6c93fd05-b5a7-46e7-8afa-f5aa7383cc58/Untitled.png)
+![Solution1](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6c93fd05-b5a7-46e7-8afa-f5aa7383cc58/Untitled.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/70032d33-691e-4e35-8de1-b8ce466fbf91/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/70032d33-691e-4e35-8de1-b8ce466fbf91/Untitled.png)
+![Solution2](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/70032d33-691e-4e35-8de1-b8ce466fbf91/Untitled.png)
 
 - Context 1개만 가지고 모든 테스트 해결
 
@@ -219,7 +219,7 @@ JPA N+1 문제
 
 JPA Persist Writer
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/72b121f6-9c57-44c1-af9d-085b10a6a10b/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/72b121f6-9c57-44c1-af9d-085b10a6a10b/Untitled.png)
+![persist writer](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/72b121f6-9c57-44c1-af9d-085b10a6a10b/Untitled.png)
 
 처음 데이터가 save 될 때도 Update 쿼리가 항상  실행된다..
 
