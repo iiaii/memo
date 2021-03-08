@@ -45,11 +45,90 @@ SPA의 단점을 보완하고자 SSR의 장점을 활용하는데 이때 프리�
 
 ### Nuxt.js
 
-- [Nuxt.js-vs-Vue.js-SSR-시작하기](https://velog.io/@bluestragglr/Nuxt.js-vs-Vue.js-SSR-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0)
-- [Nuxt.js ssr](https://www.youtube.com/watch?v=8o-TVh6AiZY)
+
+##### 프로젝트 세팅 및 실행
+
+
+- 프로젝트 세팅 : `npx create-nuxt-app [프로젝트명]`
+- 프로젝트 실행 : `npm run dev' 로 실행
+
+
+
+##### pages
+
+pages 하위 폴더에서 폴더를 생성하고 해당 폴더에서 `index.vue` 파일을 생성하면 루트부터 라우팅이 적용된다. (.nuxt 의 `router.js`에서 디렉토리 구조에 맞게 라우팅된 코드가 생성된다)
+
+
+- example.com/hello/word 의 페이지 구성이라면
+```
+pages폴더 (/) 
+  > hello 폴더 
+    > index.vue 파일 (/hello)
+    > world 폴더 
+      > index.vue 파일 (/hello/world)
+```
+
+
+##### nuxt-link
+
+
+`<nuxt-link to="/blog">Blog</nuxt-link>`
+
+
+nuxt-link 태그는 SPA 동작처럼 페이지 이동을 하도록 하는 태그이다. 화면의 깜빡임과 지연시간 없이 SPA 처럼 즉시 페이지 이동이 이루어진다. 
+이때 즉시 페이지 이동이 이루어질 수 있도록 nuxt-link의 to에 해당 페이지에 필요한 자바스크립트 코드를 미리 로딩하는데, 현재 브라우저 화면에 보이는 데이터만 미리 로딩하도록 되어있다. [Prefetching]
+(스크롤으로 노출되는 순간 해당 페이지의 자바스크립트 코드가 로딩됨) -> Bandwidth 절약
+
+> methods 안에 함수를 넣고 이벤트를 걸어서 `this.$router.push('/blog');`를 통해 페이지 이동이 이루어지도록 할 수도 있다.
+
+
+
+##### Html Head
+
+`nuxt.config.js`의 head 안에 내용을 추가하면 모든 HTML 헤더에 내용이 추가되고
+vue 파일 안의 script에서 head 를 추가해도 동작하며 vue 파일에서 지정하는 것이 우선순위가 더 높다.
+
+```vue
+export default {
+  head: {
+    title: '여기는 메인 페이지'
+  },
+  ...
+ }
+```
+
+
+##### Validate Method
+
+vue 파일 중에서 라우팅이 필요없는 작은 단위의 컴포넌트 파일도 존재한다. 
+이때 vue 파일안에서 validate 메서드의 반환 값을 false로 하면 브라우저에서 렌더링하지 않는다.
+
+```vue
+export default {
+  validate() {
+    console.log('on the server');
+    return false;
+  }
+  ...
+ }
+```
+
+validate 메서드는 최초 접근시 브라우저(클라이언트) 상에서 딱 한번 실행되고 이후에는 SSR이 이루어지는 서버에서만 실행된다.
+따라서 브라우저 콘솔에서 `on the server` 가 한번 출력되고 리프레시하거나 다시 접근하더라도 해당 메서드는 다시 실행되지 않는다.
+(즉, validate 메서드는 최초 접근시 브라우저에서 한번만 실행되고 이후 접근에는 SSR을 제공하는 서버 측에서만 실행된다.)
+
+
+
+
+
+
+
 
 
 ---
 - [SSR vs CSR](https://medium.com/aha-official/%EC%95%84%ED%95%98-%ED%94%84%EB%A1%A0%ED%8A%B8-%EA%B0%9C%EB%B0%9C%EA%B8%B0-1-spa%EC%99%80-ssr%EC%9D%98-%EC%9E%A5%EB%8B%A8%EC%A0%90-%EA%B7%B8%EB%A6%AC%EA%B3%A0-nuxt-js-cafdc3ac2053)
 - [Nuxt SSR](https://maxkim-j.github.io/posts/nuxt-ssr)
 - [google ssr, csr, prerendering, (re)hydration](https://developers.google.com/web/updates/2019/02/rendering-on-the-web?hl=en)
+- [Nuxt Tutorial](https://www.youtube.com/watch?v=UDUP5NfX7FU)
+- [Nuxt.js-vs-Vue.js-SSR-시작하기](https://velog.io/@bluestragglr/Nuxt.js-vs-Vue.js-SSR-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0)
+- [Nuxt.js ssr](https://www.youtube.com/watch?v=8o-TVh6AiZY)
