@@ -52,3 +52,4 @@ SPA의 단점을 보완하고자 SSR의 장점을 활용하는데 이때 프리�
 ---
 - [SSR vs CSR](https://medium.com/aha-official/%EC%95%84%ED%95%98-%ED%94%84%EB%A1%A0%ED%8A%B8-%EA%B0%9C%EB%B0%9C%EA%B8%B0-1-spa%EC%99%80-ssr%EC%9D%98-%EC%9E%A5%EB%8B%A8%EC%A0%90-%EA%B7%B8%EB%A6%AC%EA%B3%A0-nuxt-js-cafdc3ac2053)
 - [Nuxt SSR](https://maxkim-j.github.io/posts/nuxt-ssr)
+- [google ssr, csr, prerendering, (re)hydration](https://developers.google.com/web/updates/2019/02/rendering-on-the-web?hl=en)
