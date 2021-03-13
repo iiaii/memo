@@ -83,6 +83,26 @@ console.dir(you);
 일반함수와 생성자 함수의 호출 시 this 바인딩 방식이 다르기 때문이다.
 일반 함수를 호출하면 this는 전역객체에 바인딩되지만 new 연산자와 함께 생성자 함수를 호출하면 this는 생성자 함수가 암묵적으로 생성한 빈 객체에 바인딩된다.
 
+```javascript
+function Person(name) {
+  // new없이 호출하는 경우, 전역객체에 name 프로퍼티를 추가
+  this.name = name;
+};
+
+// 일반 함수로서 호출되었기 때문에 객체를 암묵적으로 생성하여 반환하지 않는다.
+// 일반 함수의 this는 전역객체를 가리킨다.
+var me = Person('Lee');
+
+console.log(me); 
+console.log(window.name); 
+
+// undefined
+// Lee
+```
+
+생성자 함수를 new 없이 호출한 경우, 함수 Person 내부의 this는 전역객체를 가리키므로 name은 전역변수(window)에 바인딩된다. 또한 new와 함께 생성자 함수를 호출하는 경우에 *암묵적으로 반환하던 this*도 반환하지 않으며, 반환문이 없으므로 undefined를 반환하게 된다.
+
+이러한 위험성을 회피하기 위해 사용되는 패턴(Scope-Safe Constructor)은 다음과 같다. 이 패턴은 대부분의 라이브러리에서 광범위하게 사용된다.
 
 
 ---
