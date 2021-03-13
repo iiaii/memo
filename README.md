@@ -38,6 +38,7 @@
 - [setInterval / setTimeout](https://github.com/iiaii/memo/blob/master/javascript/setInterval-setTimeout.md)
 - [Path](https://github.com/iiaii/memo/blob/master/javascript/path.md)
 - [동등비교연산자 / 일치비교연산자](https://github.com/iiaii/memo/blob/master/javascript/operator.md)
+- [객체 ](https://github.com/iiaii/memo/blob/master/javascript/new-function-step.md)
 
 ##### repo
 
