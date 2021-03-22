@@ -7,6 +7,7 @@
 - [Spring](#spring)
 - [DataBase](#database)
 - [Infra](#infra)
+- [OS](#OS)
 - [개발 상식](#개발-상식)
 - [개발 블로그 북마크](#개발-블로그-북마크)
  
@@ -125,7 +126,14 @@
  
 - [kafka](https://github.com/iiaii/memo/blob/master/infra/kafka.md)
  
-  
+
+---
+### OS
+
+##### memo
+
+- [OS](https://github.com/iiaii/memo/tree/master/os)
+ 
 ---
 ### 개발 상식
 
