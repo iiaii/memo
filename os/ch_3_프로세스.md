@@ -7,3 +7,5 @@
   - 프로세스의 주소 공간 (code, data, stack)
   - 프로세스 관련 커널 자료구조 (PCB, Kernel stack)
 
+
+
