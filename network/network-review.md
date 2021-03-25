@@ -491,7 +491,242 @@ POST로 주문 후에 주문 결과 화면을 GET 메서드로 리다이렉트 �
 
 > 5xx 에러는 웬만하면 만들면 안된다. (오남용 금지, 진짜 에러일때만 사용해야 함, 즉 예외처리가 되어야 함)
 
----
 
+
+---
+# HTTP 헤더
+
+- 헤더 예시
+
+```
+// 리퀘스트 
+GET /search?q=hello&hl=ko HTTP/1.1
+Host: www.google.com // 헤더
+```
+
+```
+// 리스폰스
+HTTP/1.1 200 OK
+Content-Type: text/html;charset=UTF-8 // 헤더
+Content-Length: 3423					 // 헤더
+
+<html>
+	<body>...</body>
+</html>
+```
+
+
+- HTTP 전송에 필요한 모든 부가정보
+- 메시지 바디의 내용, 메시지 바디의 크기, 압축, 인증, 요청 클라이언트, 서버 정보, 캐시 관리정보
+- 표준 헤더가 상당히 많음
+- 필요시 임의의 헤더 추가 가능
+
+
+### HTTP BODY (message body - RFC7230 최신)
+
+start line + 표현 헤더 + 표현 데이터 (= 메시지 본문 = 페이로드)
+
+- 메시지 본문을 통해 표현 데이터 전달
+- 메시지 본문 = 페이로드
+- 표현은 요청이나 응답에서 전달할 실제 데이터
+- 표현 헤더는 표현 데이터를 해석할 수 있는 정보 제공 (html, json, 데이터 길이, 압축 정보)
+
+> 표현이라고 이야기하는 이유는 html로 json으로 표현하기 때문
+
+
+### 표현
+
+```
+HTTP/1.1 200 OK
+Content-Type: text/html;charset=UTF-8
+Content-Encoding: gzip
+Content-Language: ko
+Content-Length: 521
+
+<html>
+안녕하세요
+<h1>lkj123k1</h1>
+</html>
+```
+
+- Content-Type: 표현 데이터의 형식
+- Content-Encoding: 표현 데이터의 압축 방식
+- Content-Language: 표현 데이터의 자연언어
+- Content-Length: 표현 데이터의 길이 (Transfer-Encoding 사용하면 Content-Length 사용하면 안됨)
+
+> 표현 헤더는 전송, 응답 둘다 사용 
+
+
+
+### 콘텐츠 협상 (content negotiation)
+
+```
+// 리퀘스트
+GET /event
+Accept-Language: ko
+```
+
+```
+// 리스폰스
+Content-Language: ko
+
+안녕하세요
+```
+
+클라이언트가 선호하는 표현 요청
+
+- Accept: 클라이언트가 선호하는 미디어 타입 전달
+- Accept-Charset: 클라이언트가 선호하는 문자 인코딩
+- Accept-Encoding: 클라이언트가 선호하는 압축 인코딩
+- Accept-Language: 클라이언트가 선호하는 자연 언어
+
+> 협상 헤더는 요청시에만 사용
+
+
+##### 협상과 우선순위
+
+```
+// q 값이 클수록 높은 우선순위 (0~1)
+GET /event
+Accept-Language:ko-KR,ko;q=0.9,en-US;q=0.8,en=;q=0.7
+```
+
+1. 한국어
+2. 영어
+
+
+```
+// 구체적인 것이 우선
+GET /event
+Acccept: text/*, text/plain, text/plain;format=flowed, */*
+```
+
+1. `text/plain;format=flowed`
+2. `text/plain`
+3. `text/*`
+4. `*/*`
+
+
+
+### 전송 방식
+
+- 단순 전송 (Content-Length)
+- 압축 전송 (Content-Encoding: gzip)
+- 분할 전송 (Transfer-Encoding: chunked) -> Content-Length는 사용하면 안됨
+- 범위 전송 (Content-Range - 어느정도 까지 받은지 기억하고 실패할때 다시 그부분 부터 전송 요청)
+
+
+### 일반 정보
+
+
+- From: 유저 에이전트의 이메일 정보 (잘 사용되지 않음, 검색엔진에서 어뷰징 방지로 사용)
+- Referer: 이전 웹 페이지 주소 (유입 경로 분석가능, referer는 사실 오타임)
+- User-Agent: 유저 에이전트 애플리케이션 정보 (특정 브라어저 등에서 오류인것을 확인 가능)
+- Server: 요청을 처리하는 ORIGIN 서버의 소프트웨어 정보 (프록시가 아닌 실제 요청 처리한 서버 정보, 응답에서 사용)
+- Date: 메시지가 발생한 날짜와 시간 (응답에서 사용)
+
+
+
+### 특별한 정보
+
+- Host: 필수 헤더로서 요청한 호스트 정보 (도메인)
+
+
+```
+GET /hello HTTP/1.1
+Host: aaa.com
+```
+
+서버에서는 같은 IP에서도 여러 도메인을 가질 수 있기 때문에 명시해주어야 정확한 요청이 된다.
+
+
+- Location: 페이지 리다이렉션 (로케이션 위치로 자동 이동)
+
+
+- Allow: 허용 가능한 HTTP 메서드 (거의 사용 X)
+
+
+- Retry-After: 유저 에이전트가 다음 요청을 하기까지 기다려야 하는 시간 (거의 사용 X)
+
+
+
+##### 인증
+
+- Authorization: 클라이언트 인증 정보를 서버에 전달
+
+`Authorization: Basic xxxx`
+
+- WWW-Authenticate: 리소스 접근시 필요한 인증 방법 정의
+
+401 Unauthorized 응답과 함께 사용
+
+
+
+##### 쿠키
+
+
+- Set-Cookie: 서버에서 클라이언트로 쿠키 전달 (응답)
+- Cookie: 클라이언트가 서버에서 받은 쿠키를 저장하고, HTTP 요청시 서버로 전달
+
+
+> Stateless
+
+- HTTP는 무상태, 비연결 프로토콜
+- 클라이언트와 서버가 요청과 응답을 주고 받으면 연결이 끊어진다
+- 클라이언트가 다시 요청하면 서버는 이전 요청을 기억하지 못한다
+- 클라이언트와 서버는 서로 상태를 유지하지 않는다
+
+
+```
+set-cookie: sessionId=abcde1234; expires=Sat, 26-Dec-2020 GMT; path=/; domain=.google.com; Secure
+```
+
+
+- 사용처: 사용자 로그인 세션 관리, 광고 정보 트래킹
+- 쿠키 정보는 항상 서버에 전송되기 때문에 네트워크 트래픽 추가 유발함 (최소한의 정보만 사용 - 세션 id, 인증 토큰)
+- 서버에 전송하지 않고 웹 브라우저 내부에 데이터를 저장하고 싶으면 웹 스토리지 (localStorage, sessionStorage)
+- 보안에 민감한 데이터는 저장하면 안된다 (주민번호, 신용카드 번호 등)
+
+
+> 쿠키 - 생명주기
+
+
+- Set-Cookie: expires=Sat, 26-Dec-2020 04:39:21 GMT
+	- 만료일이 되면 쿠키 삭제
+- Set-Cookie: max-age=3600 (3600초)
+	- 0이나 음수를 지정하면 쿠키 삭제
+- 세션 쿠키: 만료 날짜를 생략하면 브라우저 종료시 까지만 유지
+- 영속 쿠키: 만료 날짜를 입력하면 해당 날짜까지 유지
+
+
+> 쿠키 - 도메인
+
+- `domain=example.org`
+- 명시: 명시한 문서 기준 도메인 + 서브 도메인 포함
+	- domain=example.org를 지정해서 쿠키 생성
+		- example.org, dev.example.org 도 쿠키 접근
+	- 생략하면 example.org 에서만 쿠키 접근 가능
+
+
+> 쿠키 - 경로
+
+- `path=/home`
+- 이 경로를 포함한 하위 경로 페이지만 쿠키 접근
+- 일반적으로 path=/ 루트로 지정
+- path=/home 지정
+	- /home 하위는 모두 가능 (이외에는 쿠키 전달 X)
+
+
+> 쿠키 - 보안
+
+- Secure
+	- 쿠키는 http, https를 구분하지 않고 전송
+	- Secure를 적용하면 https인 경우에만 전송
+- HttpOnly
+	- XSS 공격 방지
+	- 자바스크립트에서 접근 불가
+	- HTTP 전송에만 사용
+- SameSite (잘 사용 안해서 지원확인해야함)
+	- XSRF 공격방지
 
 
