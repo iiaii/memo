@@ -731,6 +731,7 @@ set-cookie: sessionId=abcde1234; expires=Sat, 26-Dec-2020 GMT; path=/; domain=.g
 
 
 
+
 ---
 # 캐시
 
@@ -739,5 +740,108 @@ set-cookie: sessionId=abcde1234; expires=Sat, 26-Dec-2020 GMT; path=/; domain=.g
 - 캐시 헤더
 
 `cache-control: max-age=60`  -> 60초 유지
+
+
+### 검증 헤더와 조건부 요청
+
+
+1. 첫 번째 클라이언트의 이미지 요청에서 서버가 다음 헤더를 같이 보냄
+
+`Last-Modified: 2020년 11월 10일 10:00:00`
+
+2. 다시 클라이언트가 요청할때, 캐시 유효시간이 지났으면 다음 헤더를 같이 보냄
+
+`if-modified-since: 2020년 11월 10일 10:00:00`
+
+3. 서버에서 재요청 받았을때 변경사항이 없으면 Last-Modified가 붙은 헤더와 HTTP BODY 없이 304 Not Modified를 보낸다 (네트워크 부하를 줄일수 있음)
+
+4. 클라이언트는 캐시 유효시간을 다시 세팅하고 브라우저 캐시에 있는 이미지를 다시 사용한다
+
+> 만약 그 사이에 이미지가 변경되었다면 모든 데이터를 전송한다
+
+
+##### 검증 헤더
+
+- 캐시 데이터와 서버 데이터가 같은지 검증하는 데이터
+- Last-Modified, ETag
+
+##### 조건부 요청 헤더
+
+- 검증 헤더로 조건에 따른 분기
+- If-Modified-Since: Last-Modified 사용
+- If-None-Match: ETag 사용
+- 조건이 만족하면 200 OK, 만족하지 않으면 304 Not Modified (캐시 리다이렉션)
+
+
+##### Last-Modified, If-Modified-Since 단점
+
+- 1초 미만 단위로 캐시 조정 불가능
+- 날짜 기반의 로직 사용
+- 데이터를 수정해서 날짜가 다르지만, 데이터 결과는 같은 경우
+- 서버에서 별도의 캐시 로직을 관리하고 싶은 경우
+	- 스페이스나 주석처럼 크게 영향이 없는 변경에서 캐시를 유지하고 싶은 경우
+
+
+##### ETag, If-None-Match
+
+- ETag (Entity Tag)
+- 캐시용 데이터에 임의의 고유한 버전 이름을 달아둠
+	- ETag: “v1.0”, ETag: “{해시값}”
+- 데이터가 변경되면 이 이름을 바꾸어서 변경함 (Hash를 다시 생성)
+- ETag만 보내서 같으면 유지 다르면 다시 받기
+
+1. 서버에서 ETag로 값 내려줌
+2. 캐시 만료후 재요청시 if-none-match로 질의
+3. 변경사항 없으면 304, 있으면 다시 전송
+
+> 서버에서 캐시를 관리할 수 있음
+
+
+
+##### 캐시 제어 헤더
+
+- Cache-Control (이것만 알아도 됨)
+
+`Cache-Control: max-age`
+
+캐시 유효 시간, 초 단위
+
+`Cache-Control: no-cache`
+
+데이터는 캐시해도 되지만, 항상 원(origin) 서버에 검증하고 사용 (중간에 위치한 캐시용 프록시 서버말고 원 서버까지 검증이 이루어져야 함)
+
+`Cache-Control: no-store`
+
+데이터에 민감한 정보가 있으므로 저장하면 안됨 (메모리에 사용하고 최대한 빨리 삭제)
+
+
+##### 프록시 캐시
+
+cdn, 클라우드 프론트 를 뜻함
+
+
+원서버 앞에 프록시 캐시 서버를 놓아서 클라이언트 요청시간을 줄여줌 (public 캐시)
+
+- `Cache-Control: public` 
+
+응답이 public 캐시에 저장되어도 됨
+
+- `Cache-Control: private`
+
+응답이 해당 사용자만을 위한 것임, 기본적으로 private
+
+
+##### 캐시 무효화
+
+- Cache-Control: no-cache, no-store, must-revalidate
+- Pragma: no-cache (하위호환)
+
+캐시가 되면 안되는 것들은 반드시 포함되어야 함
+
+- `no-cache` vs `must-revalidate`
+
+must-revalidate는 프록시 캐시 서버에서 원서버에 접근할 수 없는 경우 항상 오류가 발생해야 함 (no-cache는 설정에 따라 다르게 할 수 있음)
+
+
 
 
