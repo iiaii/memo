@@ -138,7 +138,7 @@ Host: www.google.com
 
 5. TCP/IP 패킷 생성
 
-[image:22799032-A752-4177-8D5B-8AACCCB8394B-88164-00008377FDF30E6C/스크린샷 2021-03-23 오후 6.06.23.png]
+![tcp ip](https://github.com/iiaii/memo/blob/master/images/tcpIp.png?raw=true)
 HTTP 메시지 (웹브라우저가 만든 전송 데이터) + (출발지 IP, PORT / 목적지 IP, PORT)
 
 6. 서버로 요청 전송 및 패킷 해석 (각 계층에서 분해)
