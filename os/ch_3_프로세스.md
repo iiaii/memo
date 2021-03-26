@@ -45,4 +45,35 @@
 
 ### 문맥 교환 (context switching)
 
-- CPU를 한 
+- CPU를 한 프로세스에서 다른 프로세스로 넘겨주는 과정
+- CPU가 다른 프로세스에게 넘어갈 때 운영체제는 다음을 수행
+
+-> CPU를 내어주는 프로세스의 상태를 그 프로세스의 PCB에 저장
+-> CPU를 새롭게 얻는 프로세스의 상태를 PCB에서 읽어옴
+
+> system call이나 interrupt 발생시에 context switch가 일어나는 것은 아니다. (사용자 프로세스 -> 운영체제 는 문맥 교환이 아님)
+> 시스템 콜 이후 문맥 교환 없이 user mode로 복귀하는 것 역시 수행정보 등 context 일부를 PCB에 save 해야 하지만 a 프로세스에서 b 프로세스로의 문맥 교환은 부담이 훨씬 크다. 
+> (문맥교환이 일어나면 캐시 메모리 flush 함)
+
+
+
+### 스케줄러
+
+- Long-term scheduler (장기 스케줄러)
+
+-> 시작 프로세스 중 어떤 것들을 ready queue로 보낼지 결정
+-> 프로세스에 메모리를 주는 문제
+-> degree of Multiprogramming을 제어
+-> time sharing system에는 보통 장기 스케줄러가 없음 (무저건 ready)
+
+- Short-term scheduler (단기 스케줄러)
+
+-> 어떤 프로세스를 다음번에 running 시킬지 결정
+-> 프로세스에 CPU를 주는 문제
+-> 충분히 빨라야 함
+
+- Medium-Term Scheduler (중기 스케줄러)
+
+-> 여유 공간 마련을 위해 프로세스를 통째로 메모리에서 디스크로 쫓아 냄
+-> 프로세스에게서 메모리에서 디스크로 쫓아냄
+-> degree of Multiprogramming을 제어
