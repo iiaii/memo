@@ -11,4 +11,4 @@
 4. Terminate
 
 
-1,4에서 스케줄링은 nonpreemptive(= 강제로 빼앗지 않고 자진 반납) 다른 스케줄링은 preemptive(= 강제로 빼앗음)
+1,4에서 스케줄링은 nonpreemptive(= 강제로 빼앗지 않고 자진 반납) 2, 3에서 스케줄링은 preemptive(= 강제로 빼앗음)
