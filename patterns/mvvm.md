@@ -1,7 +1,7 @@
 # MVVM (Model - View - View Model)
 
 
-![mvvm flow](https://res.cloudinary.com/software-crafters/image/upload/v1544443712/posts/patron-mvvm-xamarin-forms/mvvm.png)
+
 ![mvvm detail flow](https://media.vlpt.us/images/jojo_devstory/post/5d3e1aa5-28bc-45d3-964f-36e60e4e9088/%EC%BA%A1%EC%B2%98.PNG)
 
 View Model은 View를 표현하기 위해 만들어진 View를 위한 Model 같은 존재다. 
