@@ -1,8 +1,9 @@
-## Vue Lifecycle
+# Vue 라이프 사이클
 
 ![vue-lifecycle](https://kr.vuejs.org/images/lifecycle.png)
 
-1. Creatrion
+
+### 1. Creatrion
 
 - 컴포넌트가 돔에 추가되기 전의 상태
 
@@ -17,7 +18,8 @@
 - 렌더링되지 않은 상태
 
 
-2. Mounting (DOM 삽입 단계)
+---
+### 2. Mounting (DOM 삽입 단계)
 
 - 초기 렌더링 직전 컴포넌트에 직접 접근할 수 있고 서버 렌더링에서 지원 X
 - 초기 렌더링 직전에 돔을 변경하고자 할 때 사용
@@ -38,7 +40,8 @@
 > 부모 Created -> 자식 Created -> 자식 Mounted -> 부모 Mounted
 
 
-3. Updating (Diff 및 재 렌더링 단계)
+---
+### 3. Updating (Diff 및 재 렌더링 단계)
 
 - 컴포넌트에서 사용되는 반응형 속성들이 변경되거나 재 렌더링되면 실행
 - 디버깅이나 프로파일링 등을 위해 컴포넌트 재 렌더링 시점을 알고 싶을때 사용
@@ -54,7 +57,8 @@
 - 여기서 상태 변경을 하면 무한루프에 빠질 수 있음 (모든 자식 컴포넌트 재 렌더링을 보장하지 않음)
 
 
-4. Destruction (해체 단계)
+---
+### 4. Destruction (해체 단계)
 
 
 ##### beforeDestroy
