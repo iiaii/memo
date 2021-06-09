@@ -69,6 +69,7 @@
 
 ##### memo
 
+- [Vue 라이프 사이클](https://github.com/iiaii/memo/blob/master/vue/vue-lifecycle.md)
 - [Vue 데이터 바인딩](https://github.com/iiaii/memo/blob/master/vue/data-binding.md)
 - [$mount vs el 차이점](https://github.com/iiaii/memo/blob/master/vue/mount-el.md)
 - [Nuxt.js SSR](https://github.com/iiaii/memo/blob/master/vue/nuxt-ssr.md)
