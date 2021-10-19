@@ -33,3 +33,4 @@ Master DBMS에는 데이터의 수정사항을 반영만하고 Replication해서
 ---
 - [리플리케이션이란](https://www.coovil.net/db-replication/)
 - [DB 리플리케이션](https://nesoy.github.io/articles/2018-02/Database-Replication)
+- [MySQL Replication](http://cloudrain21.com/mysql-replication)
