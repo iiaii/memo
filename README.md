@@ -118,7 +118,9 @@
  ##### memo
  
  - [Replication](https://github.com/iiaii/memo/blob/master/database/replication.md)
+ - [Sharding](https://github.com/iiaii/memo/blob/master/database/sharding.md)
  - [Key](https://github.com/iiaii/memo/blob/master/database/keys.md)
+ 
  
  
 ---
