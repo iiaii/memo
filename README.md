@@ -117,7 +117,7 @@
  
  ##### memo
  
- - [리플리케이션(Replication)](https://github.com/iiaii/memo/blob/master/database/replication.md)
+ - [리플리케이션(Replication)](https://github.com/iiaii/memo/blob/master/database/replication.md) / [리플리케이션 | 블로그](https://iiaii.tistory.com/7)
  - [샤딩(Sharding)](https://github.com/iiaii/memo/blob/master/database/sharding.md)
  - [Key](https://github.com/iiaii/memo/blob/master/database/keys.md)
  
