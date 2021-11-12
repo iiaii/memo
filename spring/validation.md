@@ -1,5 +1,7 @@
 # Spring Validation
 
+[Spring Validation](https://github.com/iiaii/spring-validation)
+
 - Spring Validation은 크게 3가지 계층에서 가능하다 (Controller, Service, Repository)
 
 ### 검증 방법
