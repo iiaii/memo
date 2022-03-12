@@ -121,6 +121,7 @@
  - [리플리케이션(Replication)](https://github.com/iiaii/memo/blob/master/database/replication.md) ([리플리케이션 | 블로그](https://iiaii.tistory.com/7) / [리플리케이션의 문제와 해결방법(복제지연, Semi-Sync Replication)](https://iiaii.tistory.com/8))
  - [샤딩(Sharding)](https://github.com/iiaii/memo/blob/master/database/sharding.md)
  - [Key](https://github.com/iiaii/memo/blob/master/database/keys.md)
+ - [Index](https://github.com/iiaii/memo/blob/master/database/index.md)
  
  
  
